@@ -8,10 +8,15 @@ import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import Negocio.Leilao;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class LeilaoMainInterface {
 
@@ -50,13 +55,20 @@ public class LeilaoMainInterface {
 		frame.getContentPane().setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(320, 474, -309, -468);
+		scrollPane.setBounds(0, 42, 325, 437);
 		frame.getContentPane().add(scrollPane);
 		
 		JList list = new JList();
+		list.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Leilao leilao = (Leilao) list.getSelectedValue();
+				LeilaoAtual.leilaoAtualMain();
+				LeilaoAtual.recebeLeilao(leilao);
+			}
+		});
+		scrollPane.setViewportView(list);
 		list.setBackground(Color.DARK_GRAY);
-		list.setBounds(0, 42, 325, 437);
-		frame.getContentPane().add(list);
 		
 		JLabel lblNewLabel = new JLabel("Leil\u00F5es ativos");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
