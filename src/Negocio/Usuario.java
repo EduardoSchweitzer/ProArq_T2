@@ -4,15 +4,13 @@ public class Usuario {
 
 	private String cpf;
 	private String nome;
-	private String id;
 	private String email;
 	private String senha;
 	private boolean admin;
 
-	public Usuario(String cpf, String nome, String id, String email, String senha, boolean admin) {
+	public Usuario(String cpf, String nome, String email, String senha, boolean admin) {
 		this.cpf = cpf;
 		this.nome = nome;
-		this.id = id; //TODO gerar id
 		this.email = email;
 		this.senha = senha;
 		this.admin = admin;
@@ -34,15 +32,6 @@ public class Usuario {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	//ID
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	//Email
