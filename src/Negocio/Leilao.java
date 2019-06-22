@@ -20,6 +20,7 @@ public class Leilao {
 		//TODO gerar id
 		this.maiorLance = new Lance(precoInicial, this.idProponente);
 		this.historicoLances = new ArrayList<>();
+		this.historicoLances.add(maiorLance);
 		ultimaModificacao = Calendar.getInstance().getTimeInMillis();
 	}
 

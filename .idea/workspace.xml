@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e3a31ba-c9b6-4e8d-a25f-5d470c633fe5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Persistencia/LeilaoDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Persistencia/UsuarioDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Persistencia/LeilaoDAOJson.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Leiloes.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Leiloes.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Negocio/Leilao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Negocio/Leilao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Persistencia/LeilaoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Persistencia/LeilaoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Persistencia/LeilaoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Persistencia/LeilaoDTO.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,179 +18,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Negocio/Leilao.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Persistencia/LeilaoDAOJson.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="121" column="5" selection-start-line="94" selection-start-column="4" selection-end-line="121" selection-end-column="5" />
+            <state relative-caret-position="282">
+              <caret line="51" column="20" lean-forward="true" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#390#391#0" expanded="true" />
-                <element signature="e#406#407#0" expanded="true" />
-                <element signature="e#439#440#0" expanded="true" />
-                <element signature="e#458#459#0" expanded="true" />
-                <element signature="e#493#494#0" expanded="true" />
-                <element signature="e#518#519#0" expanded="true" />
-                <element signature="e#569#570#0" expanded="true" />
-                <element signature="e#606#607#0" expanded="true" />
-                <element signature="e#642#643#0" expanded="true" />
-                <element signature="e#668#669#0" expanded="true" />
-                <element signature="e#721#722#0" expanded="true" />
-                <element signature="e#760#761#0" expanded="true" />
-                <element signature="e#793#794#0" expanded="true" />
-                <element signature="e#817#818#0" expanded="true" />
-                <element signature="e#1263#1264#0" expanded="true" />
-                <element signature="e#1315#1316#0" expanded="true" />
-                <element signature="e#950#951#0" expanded="true" />
-                <element signature="e#979#980#0" expanded="true" />
-                <element signature="e#1049#1050#0" expanded="true" />
-                <element signature="e#1094#1095#0" expanded="true" />
-                <element signature="e#1130#1131#0" expanded="true" />
-                <element signature="e#1156#1157#0" expanded="true" />
-                <element signature="e#1209#1210#0" expanded="true" />
-                <element signature="e#1248#1249#0" expanded="true" />
-                <element signature="e#1287#1288#0" expanded="true" />
-                <element signature="e#1318#1319#0" expanded="true" />
-                <element signature="e#1379#1380#0" expanded="true" />
-                <element signature="e#1428#1429#0" expanded="true" />
-                <element signature="e#1535#1536#0" expanded="true" />
-                <element signature="e#1556#1557#0" expanded="true" />
-                <element signature="e#1596#1597#0" expanded="true" />
-                <element signature="e#1623#1624#0" expanded="true" />
-                <element signature="e#1655#1656#0" expanded="true" />
-                <element signature="e#1678#1679#0" expanded="true" />
-                <element signature="e#1722#1723#0" expanded="true" />
-                <element signature="e#1753#1754#0" expanded="true" />
+                <element signature="e#162#163#0" expanded="true" />
+                <element signature="e#189#190#0" expanded="true" />
+                <element signature="e#1334#1335#0" expanded="true" />
+                <element signature="e#1361#1362#0" expanded="true" />
+                <element signature="e#1430#1431#0" expanded="true" />
+                <element signature="e#1457#1458#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Persistencia/LeilaoDTO.java">
+        <entry file="file://$PROJECT_DIR$/src/Persistencia/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="935">
-              <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
+            <state relative-caret-position="314">
+              <caret line="66" column="28" selection-start-line="66" selection-start-column="28" selection-end-line="66" selection-end-column="28" />
               <folding>
-                <element signature="e#350#351#0" expanded="true" />
-                <element signature="e#375#376#0" expanded="true" />
-                <element signature="e#411#412#0" expanded="true" />
-                <element signature="e#439#440#0" expanded="true" />
-                <element signature="e#477#478#0" expanded="true" />
-                <element signature="e#511#512#0" expanded="true" />
-                <element signature="e#565#566#0" expanded="true" />
-                <element signature="e#611#612#0" expanded="true" />
-                <element signature="e#650#651#0" expanded="true" />
-                <element signature="e#685#686#0" expanded="true" />
-                <element signature="e#741#742#0" expanded="true" />
-                <element signature="e#789#790#0" expanded="true" />
-                <element signature="e#831#832#0" expanded="true" />
-                <element signature="e#867#868#0" expanded="true" />
-                <element signature="e#927#928#0" expanded="true" />
-                <element signature="e#977#978#0" expanded="true" />
-                <element signature="e#1035#1036#0" expanded="true" />
-                <element signature="e#1076#1077#0" expanded="true" />
-                <element signature="e#1256#1257#0" expanded="true" />
-                <element signature="e#1291#1292#0" expanded="true" />
-                <element signature="e#1347#1348#0" expanded="true" />
-                <element signature="e#1395#1396#0" expanded="true" />
-                <element signature="e#1437#1438#0" expanded="true" />
-                <element signature="e#1477#1478#0" expanded="true" />
-                <element signature="e#1541#1542#0" expanded="true" />
-                <element signature="e#1599#1600#0" expanded="true" />
-                <element signature="e#533#534#0" expanded="true" />
-                <element signature="e#554#555#0" expanded="true" />
-                <element signature="e#594#595#0" expanded="true" />
-                <element signature="e#621#622#0" expanded="true" />
-                <element signature="e#665#666#0" expanded="true" />
-                <element signature="e#688#689#0" expanded="true" />
-                <element signature="e#732#733#0" expanded="true" />
-                <element signature="e#763#764#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Persistencia/UsuarioDTO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
-              <folding>
-                <element signature="e#255#256#0" expanded="true" />
-                <element signature="e#293#294#0" expanded="true" />
-                <element signature="e#323#324#0" expanded="true" />
-                <element signature="e#354#355#0" expanded="true" />
-                <element signature="e#381#382#0" expanded="true" />
-                <element signature="e#421#422#0" expanded="true" />
-                <element signature="e#453#454#0" expanded="true" />
-                <element signature="e#482#483#0" expanded="true" />
-                <element signature="e#507#508#0" expanded="true" />
-                <element signature="e#543#544#0" expanded="true" />
-                <element signature="e#571#572#0" expanded="true" />
-                <element signature="e#603#604#0" expanded="true" />
-                <element signature="e#631#632#0" expanded="true" />
-                <element signature="e#673#674#0" expanded="true" />
-                <element signature="e#707#708#0" expanded="true" />
-                <element signature="e#739#740#0" expanded="true" />
-                <element signature="e#767#768#0" expanded="true" />
-                <element signature="e#809#810#0" expanded="true" />
-                <element signature="e#843#844#0" expanded="true" />
-                <element signature="e#875#876#0" expanded="true" />
-                <element signature="e#903#904#0" expanded="true" />
-                <element signature="e#946#947#0" expanded="true" />
-                <element signature="e#980#981#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Persistencia/LeilaoDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Persistencia/UsuarioDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Negocio/Usuario.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="26" selection-start-line="4" selection-start-column="4" selection-end-line="9" selection-end-column="26" />
-              <folding>
-                <element signature="e#200#201#0" expanded="true" />
-                <element signature="e#217#218#0" expanded="true" />
-                <element signature="e#252#253#0" expanded="true" />
-                <element signature="e#273#274#0" expanded="true" />
-                <element signature="e#301#302#0" expanded="true" />
-                <element signature="e#319#320#0" expanded="true" />
-                <element signature="e#356#357#0" expanded="true" />
-                <element signature="e#379#380#0" expanded="true" />
-                <element signature="e#405#406#0" expanded="true" />
-                <element signature="e#421#422#0" expanded="true" />
-                <element signature="e#454#455#0" expanded="true" />
-                <element signature="e#473#474#0" expanded="true" />
-                <element signature="e#502#503#0" expanded="true" />
-                <element signature="e#521#522#0" expanded="true" />
-                <element signature="e#560#561#0" expanded="true" />
-                <element signature="e#585#586#0" expanded="true" />
-                <element signature="e#614#615#0" expanded="true" />
-                <element signature="e#633#634#0" expanded="true" />
-                <element signature="e#672#673#0" expanded="true" />
-                <element signature="e#697#698#0" expanded="true" />
-                <element signature="e#665#666#0" expanded="true" />
-                <element signature="e#684#685#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -198,10 +53,16 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>add</find>
+      <find>&quot;usuar</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -216,9 +77,15 @@
       <list>
         <option value="$PROJECT_DIR$/src/Negocio/Lance.java" />
         <option value="$PROJECT_DIR$/src/Negocio/Usuario.java" />
+        <option value="$PROJECT_DIR$/src/Persistencia/UsuarioDAO.java" />
+        <option value="$PROJECT_DIR$/src/Persistencia/UsuarioDTO.java" />
+        <option value="$PROJECT_DIR$/src/Persistencia/UsuarioDAOJson.java" />
+        <option value="$PROJECT_DIR$/src/Persistencia/LeilaoDAO.java" />
+        <option value="$PROJECT_DIR$/src/Persistencia/AdaptadorPersistenciaLeilao.java" />
         <option value="$PROJECT_DIR$/src/Negocio/Leilao.java" />
         <option value="$PROJECT_DIR$/src/Persistencia/LeilaoDTO.java" />
-        <option value="$PROJECT_DIR$/src/Persistencia/UsuarioDTO.java" />
+        <option value="$PROJECT_DIR$/src/Persistencia/LeilaoDAOJson.java" />
+        <option value="$PROJECT_DIR$/src/Persistencia/Main.java" />
       </list>
     </option>
   </component>
@@ -255,6 +122,12 @@
               <item name="Leiloes" type="b2602c69:ProjectViewProjectNode" />
               <item name="ProArq_T2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Negocio" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Leiloes" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProArq_T2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Persistencia" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -269,7 +142,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561161425811" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561176463936" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/json-simple-1.1.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -286,6 +159,26 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Persistencia.Main" />
+      <module name="Leiloes" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Persistencia.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -326,7 +219,56 @@
       <option name="project" value="LOCAL" />
       <updated>1561159448078</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add Leilao e Usuario DAO">
+      <created>1561161466732</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1561161466732</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Implementa metodo insert">
+      <created>1561169605811</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1561169605811</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Update UsuarioDAO e DAOJson">
+      <created>1561170464019</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1561170464019</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Create buscarPorCpf">
+      <created>1561172039604</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1561172039604</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Create buscarTodos">
+      <created>1561172241800</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1561172241800</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Create alterar">
+      <created>1561172937314</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1561172937314</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Create alterar">
+      <created>1561172968517</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1561172968517</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -342,10 +284,11 @@
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" weight="0.32872504" />
+      <window_info anchor="bottom" id="Messages" weight="0.32872504" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32258064" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39938557" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -358,108 +301,65 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Image Layers" order="0" />
+      <window_info id="Designer" order="1" />
+      <window_info id="UI Designer" order="2" />
+      <window_info id="Capture Tool" order="3" />
+      <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.25" />
+      <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="0" />
+      <window_info anchor="bottom" id="Terminal" order="1" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" weight="0.32872504" />
+      <window_info anchor="bottom" id="Messages" order="3" />
+      <window_info anchor="bottom" id="Message" order="4" />
+      <window_info anchor="bottom" id="Find" order="5" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.37327188" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="10" />
+      <window_info anchor="right" id="Palette" order="0" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Theme Preview" order="2" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
+    </layout-to-restore>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Create Leilao e Usuario" />
     <MESSAGE value="Update uml" />
     <MESSAGE value="Create Leilao e Usuario DTO" />
     <MESSAGE value="Add JSON parser" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add JSON parser" />
+    <MESSAGE value="Add Leilao e Usuario DAO" />
+    <MESSAGE value="Implementa metodo insert" />
+    <MESSAGE value="Update UsuarioDAO e DAOJson" />
+    <MESSAGE value="Create buscarPorCpf" />
+    <MESSAGE value="Create buscarTodos" />
+    <MESSAGE value="Create alterar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create alterar" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Persistencia/AdaptadorPersistenciaLeilao.java</url>
+          <line>35</line>
+          <properties />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Negocio/Lance.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" selection-start-line="2" selection-end-line="17" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Negocio/Leilao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="121" column="5" selection-start-line="94" selection-start-column="4" selection-end-line="121" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#390#391#0" expanded="true" />
-            <element signature="e#406#407#0" expanded="true" />
-            <element signature="e#439#440#0" expanded="true" />
-            <element signature="e#458#459#0" expanded="true" />
-            <element signature="e#493#494#0" expanded="true" />
-            <element signature="e#518#519#0" expanded="true" />
-            <element signature="e#569#570#0" expanded="true" />
-            <element signature="e#606#607#0" expanded="true" />
-            <element signature="e#642#643#0" expanded="true" />
-            <element signature="e#668#669#0" expanded="true" />
-            <element signature="e#721#722#0" expanded="true" />
-            <element signature="e#760#761#0" expanded="true" />
-            <element signature="e#793#794#0" expanded="true" />
-            <element signature="e#817#818#0" expanded="true" />
-            <element signature="e#1263#1264#0" expanded="true" />
-            <element signature="e#1315#1316#0" expanded="true" />
-            <element signature="e#950#951#0" expanded="true" />
-            <element signature="e#979#980#0" expanded="true" />
-            <element signature="e#1049#1050#0" expanded="true" />
-            <element signature="e#1094#1095#0" expanded="true" />
-            <element signature="e#1130#1131#0" expanded="true" />
-            <element signature="e#1156#1157#0" expanded="true" />
-            <element signature="e#1209#1210#0" expanded="true" />
-            <element signature="e#1248#1249#0" expanded="true" />
-            <element signature="e#1287#1288#0" expanded="true" />
-            <element signature="e#1318#1319#0" expanded="true" />
-            <element signature="e#1379#1380#0" expanded="true" />
-            <element signature="e#1428#1429#0" expanded="true" />
-            <element signature="e#1535#1536#0" expanded="true" />
-            <element signature="e#1556#1557#0" expanded="true" />
-            <element signature="e#1596#1597#0" expanded="true" />
-            <element signature="e#1623#1624#0" expanded="true" />
-            <element signature="e#1655#1656#0" expanded="true" />
-            <element signature="e#1678#1679#0" expanded="true" />
-            <element signature="e#1722#1723#0" expanded="true" />
-            <element signature="e#1753#1754#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Persistencia/LeilaoDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
-          <folding>
-            <element signature="e#350#351#0" expanded="true" />
-            <element signature="e#375#376#0" expanded="true" />
-            <element signature="e#411#412#0" expanded="true" />
-            <element signature="e#439#440#0" expanded="true" />
-            <element signature="e#477#478#0" expanded="true" />
-            <element signature="e#511#512#0" expanded="true" />
-            <element signature="e#565#566#0" expanded="true" />
-            <element signature="e#611#612#0" expanded="true" />
-            <element signature="e#650#651#0" expanded="true" />
-            <element signature="e#685#686#0" expanded="true" />
-            <element signature="e#741#742#0" expanded="true" />
-            <element signature="e#789#790#0" expanded="true" />
-            <element signature="e#831#832#0" expanded="true" />
-            <element signature="e#867#868#0" expanded="true" />
-            <element signature="e#927#928#0" expanded="true" />
-            <element signature="e#977#978#0" expanded="true" />
-            <element signature="e#1035#1036#0" expanded="true" />
-            <element signature="e#1076#1077#0" expanded="true" />
-            <element signature="e#1256#1257#0" expanded="true" />
-            <element signature="e#1291#1292#0" expanded="true" />
-            <element signature="e#1347#1348#0" expanded="true" />
-            <element signature="e#1395#1396#0" expanded="true" />
-            <element signature="e#1437#1438#0" expanded="true" />
-            <element signature="e#1477#1478#0" expanded="true" />
-            <element signature="e#1541#1542#0" expanded="true" />
-            <element signature="e#1599#1600#0" expanded="true" />
-            <element signature="e#533#534#0" expanded="true" />
-            <element signature="e#554#555#0" expanded="true" />
-            <element signature="e#594#595#0" expanded="true" />
-            <element signature="e#621#622#0" expanded="true" />
-            <element signature="e#665#666#0" expanded="true" />
-            <element signature="e#688#689#0" expanded="true" />
-            <element signature="e#732#733#0" expanded="true" />
-            <element signature="e#763#764#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -494,22 +394,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Persistencia/UsuarioDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Persistencia/UsuarioDTO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+        <state relative-caret-position="120">
+          <caret line="51" column="18" selection-start-line="51" selection-start-column="18" selection-end-line="51" selection-end-column="18" />
           <folding>
-            <element signature="e#255#256#0" expanded="true" />
-            <element signature="e#293#294#0" expanded="true" />
-            <element signature="e#323#324#0" expanded="true" />
-            <element signature="e#354#355#0" expanded="true" />
-            <element signature="e#381#382#0" expanded="true" />
-            <element signature="e#421#422#0" expanded="true" />
-            <element signature="e#453#454#0" expanded="true" />
-            <element signature="e#482#483#0" expanded="true" />
-            <element signature="e#507#508#0" expanded="true" />
-            <element signature="e#543#544#0" expanded="true" />
-            <element signature="e#571#572#0" expanded="true" />
+            <element signature="e#206#207#0" expanded="true" />
+            <element signature="e#232#233#0" expanded="true" />
+            <element signature="e#270#271#0" expanded="true" />
+            <element signature="e#300#301#0" expanded="true" />
+            <element signature="e#331#332#0" expanded="true" />
+            <element signature="e#358#359#0" expanded="true" />
+            <element signature="e#398#399#0" expanded="true" />
+            <element signature="e#430#431#0" expanded="true" />
             <element signature="e#603#604#0" expanded="true" />
             <element signature="e#631#632#0" expanded="true" />
             <element signature="e#673#674#0" expanded="true" />
@@ -526,17 +430,106 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Persistencia/LeilaoDAO.java">
+    <entry file="file://$PROJECT_DIR$/src/Persistencia/UsuarioDAOJson.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+        <state relative-caret-position="282">
+          <caret line="134" column="9" lean-forward="true" selection-start-line="109" selection-start-column="7" selection-end-line="134" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Persistencia/UsuarioDAO.java">
+    <entry file="file://$PROJECT_DIR$/src/Persistencia/LeilaoDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+        <state relative-caret-position="119">
+          <caret line="7" column="45" lean-forward="true" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Persistencia/LeilaoDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="50" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
+          <folding>
+            <element signature="e#385#386#0" expanded="true" />
+            <element signature="e#445#446#0" expanded="true" />
+            <element signature="e#350#351#0" expanded="true" />
+            <element signature="e#375#376#0" expanded="true" />
+            <element signature="e#411#412#0" expanded="true" />
+            <element signature="e#439#440#0" expanded="true" />
+            <element signature="e#477#478#0" expanded="true" />
+            <element signature="e#511#512#0" expanded="true" />
+            <element signature="e#565#566#0" expanded="true" />
+            <element signature="e#611#612#0" expanded="true" />
+            <element signature="e#650#651#0" expanded="true" />
+            <element signature="e#685#686#0" expanded="true" />
+            <element signature="e#741#742#0" expanded="true" />
+            <element signature="e#789#790#0" expanded="true" />
+            <element signature="e#831#832#0" expanded="true" />
+            <element signature="e#867#868#0" expanded="true" />
+            <element signature="e#912#913#0" expanded="true" />
+            <element signature="e#947#948#0" expanded="true" />
+            <element signature="e#1141#1142#0" expanded="true" />
+            <element signature="e#1182#1183#0" expanded="true" />
+            <element signature="e#1362#1363#0" expanded="true" />
+            <element signature="e#1397#1398#0" expanded="true" />
+            <element signature="e#1453#1454#0" expanded="true" />
+            <element signature="e#1501#1502#0" expanded="true" />
+            <element signature="e#1566#1567#0" expanded="true" />
+            <element signature="e#1631#1632#0" expanded="true" />
+            <element signature="e#1673#1674#0" expanded="true" />
+            <element signature="e#1713#1714#0" expanded="true" />
+            <element signature="e#1777#1778#0" expanded="true" />
+            <element signature="e#1835#1836#0" expanded="true" />
+            <element signature="e#2114#2115#0" expanded="true" />
+            <element signature="e#2150#2151#0" expanded="true" />
+            <element signature="e#2206#2207#0" expanded="true" />
+            <element signature="e#2244#2245#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Negocio/Leilao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="22" column="45" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Persistencia/AdaptadorPersistenciaLeilao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="28" column="14" lean-forward="true" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Persistencia/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="66" column="28" selection-start-line="66" selection-start-column="28" selection-end-line="66" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Persistencia/LeilaoDAOJson.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="51" column="20" lean-forward="true" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#162#163#0" expanded="true" />
+            <element signature="e#189#190#0" expanded="true" />
+            <element signature="e#1334#1335#0" expanded="true" />
+            <element signature="e#1361#1362#0" expanded="true" />
+            <element signature="e#1430#1431#0" expanded="true" />
+            <element signature="e#1457#1458#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

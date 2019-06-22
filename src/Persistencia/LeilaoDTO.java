@@ -12,6 +12,10 @@ public class LeilaoDTO {
     private String idProponente;
     private long ultimaModificacao;
 
+    public LeilaoDTO() {
+        this.historicoLanceDTOS = new ArrayList<>();
+    }
+
     public String getId() {
         return id;
     }
