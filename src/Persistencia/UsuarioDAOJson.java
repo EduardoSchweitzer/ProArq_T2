@@ -82,7 +82,6 @@ public class UsuarioDAOJson implements UsuarioDAO{
                     return jsoParaDTO(jAux);
                 }
             }
-            throw new UsuarioDAOException("CPF " + cpf + " nao econtrado");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -118,16 +117,15 @@ public class UsuarioDAOJson implements UsuarioDAO{
     }
 
     @Override
-    public void inserir(UsuarioDTO usuario) throws UsuarioDAOException {
+    public void inserir(UsuarioDTO usuario) throws UsuarioDAOCpfDuplicadoException {
         BufferedWriter bw;
-
-        if (buscarPorCpf(usuario.getCpf()) == null) {
-            throw new UsuarioDAOException("CPF" + usuario.getCpf() + " ja existe.");
-        }
-
         JSONObject usuarios;
         JSONArray jsArr;
         try {
+            if (buscarPorCpf(usuario.getCpf()) != null) {
+                throw new UsuarioDAOCpfDuplicadoException("CPF" + usuario.getCpf() + " ja existe.");
+            }
+
             usuarios = (JSONObject) new JSONParser().parse(new FileReader(caminhoUsuarios));
             jsArr = (JSONArray) usuarios.get("usuarios");
             JSONObject out = new JSONObject();
@@ -144,12 +142,12 @@ public class UsuarioDAOJson implements UsuarioDAO{
         } catch (ParseException e) {
             e.printStackTrace();
         } catch (Exception e) {
-            throw new UsuarioDAOException("Falha ao inserir." + e.getMessage());
+            e.printStackTrace();
         }
     }
 
     @Override
-    public void alterar(UsuarioDTO usuario) throws UsuarioDAOException {
+    public void alterar(UsuarioDTO usuario) throws UsuarioDAOCpfInexistenteException {
         JSONObject usuarios;
         JSONArray jsArr;
         BufferedWriter bw;
@@ -171,7 +169,7 @@ public class UsuarioDAOJson implements UsuarioDAO{
             }
 
             if (!encontrado) {
-                throw new UsuarioDAOException("");
+                throw new UsuarioDAOCpfInexistenteException("");
             }
 
             out.put("usuarios", jsArr);
@@ -186,7 +184,7 @@ public class UsuarioDAOJson implements UsuarioDAO{
         } catch (ParseException e) {
             e.printStackTrace();
         } catch (Exception e) {
-            throw new UsuarioDAOException("CPF " + usuario.getCpf() + " nao econtrado");
+            throw new UsuarioDAOCpfInexistenteException("CPF " + usuario.getCpf() + " nao econtrado");
         }
     }
 }

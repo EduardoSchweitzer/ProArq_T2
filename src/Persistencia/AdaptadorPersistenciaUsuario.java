@@ -37,7 +37,7 @@ public class AdaptadorPersistenciaUsuario {
 	}
 	
 	
-	public void inserir(Usuario u) {
+	public void inserir(Usuario u) throws UsuarioDAOCpfDuplicadoException {
 		UsuarioDTO uDTO = converterParaDTO(u);
 		uDAO.inserir(uDTO);
 

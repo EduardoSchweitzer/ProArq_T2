@@ -51,7 +51,7 @@ public class AdaptadorPersistenciaLeilao {
 		return nlista;
 	}
 	
-	public void inserir(Leilao l) {
+	public void inserir(Leilao l) throws LeilaoDAOIdDuplicadoException {
 		LeilaoDTO lDTO = converterParaDTO(l);
 		lDAO.inserir(lDTO);
 
