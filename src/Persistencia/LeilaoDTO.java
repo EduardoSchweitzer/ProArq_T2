@@ -7,10 +7,15 @@ public class LeilaoDTO {
     private String id;
     private String nomeProduto;
     private double precoInicial;
-    private LanceDTO maiorLanceDTO;
-    private ArrayList<LanceDTO> historicoLanceDTOS;
-    private String idProponente;
+    private LanceDTO maiorLance;
+    private ArrayList<LanceDTO> historicoLance;
+    private String cpfProponente;
     private long ultimaModificacao;
+    private boolean ativo;
+
+    public LeilaoDTO() {
+        this.historicoLance = new ArrayList<>();
+    }
 
     public String getId() {
         return id;
@@ -36,36 +41,40 @@ public class LeilaoDTO {
         this.precoInicial = precoInicial;
     }
 
-    public LanceDTO getMaiorLanceDTO() {
-        return maiorLanceDTO;
+    public LanceDTO getMaiorLance() {
+        return maiorLance;
     }
 
     public void setMaiorLance(LanceDTO l) {
-    	this.maiorLanceDTO = l;
+    	this.maiorLance = l;
+    }
+
+    public void setMaiorLance(double valor, String idUsuario) {
+        this.maiorLance = new LanceDTO(valor, idUsuario);
     }
     
-    public void atualizaMaiorLanceDTO(double valor,String usuario) {
-    	this.maiorLanceDTO = new LanceDTO(valor, usuario);
+    public void atualizaMaiorLance(double valor, String usuario) {
+    	this.maiorLance = new LanceDTO(valor, usuario);
     }
 
-    public ArrayList<LanceDTO> getHistoricoLanceDTOS() {
-        return historicoLanceDTOS;
+    public ArrayList<LanceDTO> getHistoricoLance() {
+        return historicoLance;
     }
 
-    public void setHistoricoLanceDTOS(ArrayList<LanceDTO> historicoLanceDTOS) {
-        this.historicoLanceDTOS = historicoLanceDTOS;
+    public void setHistoricoLance(ArrayList<LanceDTO> historicoLance) {
+        this.historicoLance = historicoLance;
     }
 
-    public String getIdProponente() {
-        return idProponente;
+    public String getCpfProponente() {
+        return cpfProponente;
     }
 
-    public void setIdProponente(String idProponente) {
-        this.idProponente = idProponente;
+    public void setCpfProponente(String cpfProponente) {
+        this.cpfProponente = cpfProponente;
     }
     
-    public void addLanceDTO(double valor, String usuario) {
-    	historicoLanceDTOS.add(new LanceDTO(valor, usuario));
+    public void addLance(double valor, String usuario) {
+    	historicoLance.add(new LanceDTO(valor, usuario));
     }
 
     public long getUltimaModificacao() {
@@ -74,6 +83,14 @@ public class LeilaoDTO {
 
     public void setUltimaModificacao(long ultimaModificacao) {
         this.ultimaModificacao = ultimaModificacao;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 
     public class LanceDTO {
@@ -95,5 +112,27 @@ public class LeilaoDTO {
         public String getUsuario() {
             return usuario;
         }
+
+        @Override
+        public String toString() {
+            return "{" +
+                    "valor=" + valor +
+                    ", usuario='" + usuario + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "LeilaoDTO{" +
+                "id='" + id + '\'' +
+                ", nomeProduto='" + nomeProduto + '\'' +
+                ", precoInicial=" + precoInicial +
+                ", maiorLance=" + maiorLance +
+                ", historicoLance=" + historicoLance +
+                ", cpfProponente='" + cpfProponente + '\'' +
+                ", ultimaModificacao=" + ultimaModificacao +
+                ", ativo=" + ativo +
+                '}';
     }
 }
