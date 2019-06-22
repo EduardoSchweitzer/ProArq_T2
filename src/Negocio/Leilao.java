@@ -54,8 +54,12 @@ public class Leilao {
 	public Lance getMaiorLance() {
 		return maiorLance;
 	}
-
-	public void setMaiorLance(Double valor, String idUsuario) {
+	
+	public void setMaiorLance(Lance l) {
+		this.maiorLance = l;
+	}
+	
+	public void atualizaMaiorLance(Double valor, String idUsuario) {
 		this.maiorLance = new Lance(valor, idUsuario);
 	}
 
@@ -92,7 +96,7 @@ public class Leilao {
 	}
 
 
-	private class Lance {
+	public class Lance {
 
 		private double valor;
 		private String usuario;
@@ -107,17 +111,9 @@ public class Leilao {
 			return valor;
 		}
 
-		public void setValor(double valor) {
-			this.valor = valor;
-		}
-
 		//Usuario
 		public String getUsuario() {
 			return usuario;
-		}
-
-		public void setUsuario(String usuario) {
-			this.usuario = usuario;
 		}
 	}
 }
