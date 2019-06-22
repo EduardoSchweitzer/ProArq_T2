@@ -93,6 +93,32 @@ public class UsuarioDAOJson implements UsuarioDAO{
         return null;
     }
 
+    @Override
+    public UsuarioDTO buscarPorEmail(String email) {
+        JSONObject usuarios;
+        JSONArray jsArr;
+        try {
+            usuarios = (JSONObject) new JSONParser().parse(new FileReader(caminhoUsuarios));
+            jsArr = (JSONArray) usuarios.get("usuarios");
+            JSONObject jAux;
+            UsuarioDTO out = new UsuarioDTO();
+            for (Object us : jsArr) {
+                jAux = (JSONObject) us;
+                if (email.toLowerCase().matches((String)jAux.get("email"))) {
+                    return jsoParaDTO(jAux);
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public UsuarioDTO jsoParaDTO(JSONObject jso){
         UsuarioDTO us = new UsuarioDTO();
         us.setSenha((String)jso.get("senha"));
@@ -109,7 +135,7 @@ public class UsuarioDAOJson implements UsuarioDAO{
 
         out.put("admin", usuario.isAdmin());
         out.put("senha", usuario.getSenha());
-        out.put("email", usuario.getEmail());
+        out.put("email", usuario.getEmail().toLowerCase());
         out.put("cpf", usuario.getCpf());
         out.put("nome", usuario.getNome());
 
@@ -117,13 +143,16 @@ public class UsuarioDAOJson implements UsuarioDAO{
     }
 
     @Override
-    public void inserir(UsuarioDTO usuario) throws UsuarioDAOCpfDuplicadoException {
+    public void inserir(UsuarioDTO usuario) throws UsuarioDAOCpfDuplicadoException, UsuarioDAOEmailDuplicadoException {
         BufferedWriter bw;
         JSONObject usuarios;
         JSONArray jsArr;
         try {
             if (buscarPorCpf(usuario.getCpf()) != null) {
-                throw new UsuarioDAOCpfDuplicadoException("CPF" + usuario.getCpf() + " ja existe.");
+                throw new UsuarioDAOCpfDuplicadoException("CPF " + usuario.getCpf() + " ja existe.");
+            }
+            if (buscarPorEmail(usuario.getEmail()) != null) {
+                throw new UsuarioDAOEmailDuplicadoException("Email" + usuario.getEmail() + " ja existe.");
             }
 
             usuarios = (JSONObject) new JSONParser().parse(new FileReader(caminhoUsuarios));
@@ -141,8 +170,12 @@ public class UsuarioDAOJson implements UsuarioDAO{
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
-        } catch (Exception e) {
+        } catch (UsuarioDAOCpfDuplicadoException e) {
             e.printStackTrace();
+            throw new UsuarioDAOCpfDuplicadoException(e.getMessage());
+        } catch (UsuarioDAOEmailDuplicadoException e) {
+            e.printStackTrace();
+            throw new UsuarioDAOEmailDuplicadoException(e.getMessage());
         }
     }
 
@@ -169,7 +202,7 @@ public class UsuarioDAOJson implements UsuarioDAO{
             }
 
             if (!encontrado) {
-                throw new UsuarioDAOCpfInexistenteException("");
+                throw new UsuarioDAOCpfInexistenteException("CPF " + usuario.getCpf() + " nao econtrado");
             }
 
             out.put("usuarios", jsArr);
@@ -183,8 +216,8 @@ public class UsuarioDAOJson implements UsuarioDAO{
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
-        } catch (Exception e) {
-            throw new UsuarioDAOCpfInexistenteException("CPF " + usuario.getCpf() + " nao econtrado");
+        } catch (UsuarioDAOCpfInexistenteException e) {
+            throw new UsuarioDAOCpfInexistenteException(e.getMessage());
         }
     }
 }

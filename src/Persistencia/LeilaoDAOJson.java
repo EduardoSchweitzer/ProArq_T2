@@ -223,6 +223,7 @@ public class LeilaoDAOJson implements LeilaoDAO {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
+            throw new LeilaoDAOIdDuplicadoException(e.getMessage());
         }
     }
 
@@ -262,7 +263,8 @@ public class LeilaoDAOJson implements LeilaoDAO {
         } catch (ParseException e) {
             e.printStackTrace();
         } catch (Exception e) {
-            throw new LeilaoDAOIdInexistenteException("Falha ao buscar leilao." + e.getMessage());
+            e.printStackTrace();
+            throw new LeilaoDAOIdInexistenteException(e.getMessage());
         }
     }
 }
