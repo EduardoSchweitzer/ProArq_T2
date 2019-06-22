@@ -44,6 +44,26 @@ public class LeilaoDAOJson implements LeilaoDAO {
 
     @Override
     public ArrayList<LeilaoDTO> buscarTodos() {
+        ArrayList<LeilaoDTO> out = new ArrayList<>();
+        JSONObject leiloes;
+        JSONArray jsArr;
+        try {
+            leiloes = (JSONObject) new JSONParser().parse(new FileReader(caminholeiloes));
+            jsArr = (JSONArray) leiloes.get("leiloes");
+            JSONObject jAux;
+            for (Object le : jsArr) {
+                jAux = (JSONObject) le;
+                out.add(jsoParaDTO(jAux));
+            }
+            return out;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -84,8 +104,48 @@ public class LeilaoDAOJson implements LeilaoDAO {
         return null;
     }
 
-    public LeilaoDTO jsoParaDTO(JSONObject jso){
+    private LeilaoDTO jsoParaDTO(JSONObject jso){
         LeilaoDTO out = new LeilaoDTO();
+        out.setId((String)jso.get("id"));
+        out.setIdProponente((String)jso.get("idProponente"));
+        out.setNomeProduto((String)jso.get("nomeProduto"));
+        out.setPrecoInicial((double)jso.get("precoInicial"));
+        out.setUltimaModificacao((long)jso.get("ultimaModificacao"));
+        JSONObject maiorLance = (JSONObject)jso.get("maiorLance");
+        out.setMaiorLance((double)maiorLance.get("valor"), (String)maiorLance.get("idUsuario"));
+        JSONArray jsArr = (JSONArray)jso.get("historicoLances");
+
+        JSONObject aux;
+        for (Object o : jsArr) {
+            aux = (JSONObject)o;
+            out.addLance((double)aux.get("valor"), (String)aux.get("idUsuario"));
+        }
+        return out;
+    }
+
+    private JSONObject dtoParaJso(LeilaoDTO leilao) {
+        JSONObject out = new JSONObject();
+
+        JSONObject maiorLance = new JSONObject();
+        maiorLance.put("idUsuario", leilao.getMaiorLance().getUsuario());
+        maiorLance.put("valor", leilao.getMaiorLance().getValor());
+
+        JSONObject aux;
+        JSONArray historicoLances = new JSONArray();
+        for (LeilaoDTO.LanceDTO lance : leilao.getHistoricoLance()) {
+            aux = new JSONObject();
+            aux.put("idUsuario", lance.getUsuario());
+            aux.put("valor", lance.getValor());
+            historicoLances.add(aux);
+        }
+
+        out.put("id", leilao.getId());
+        out.put("idProponente", leilao.getIdProponente());
+        out.put("nomeProduto", leilao.getNomeProduto());
+        out.put("ultimaModificacao", leilao.getUltimaModificacao());
+        out.put("maiorLance", maiorLance);
+        out.put("historicoLances", historicoLances);
+        out.put("precoInicial", leilao.getPrecoInicial());
 
         return out;
     }
@@ -101,25 +161,7 @@ public class LeilaoDAOJson implements LeilaoDAO {
             jsArr = (JSONArray) le.get("leiloes");
             JSONObject out = new JSONObject();
 
-            JSONObject maiorLance = new JSONObject();
-            maiorLance.put("idUsuario", leilao.getMaiorLanceDTO().getUsuario());
-            maiorLance.put("valor", leilao.getMaiorLanceDTO().getValor());
-
-            JSONObject aux;
-            JSONArray historicoLances = new JSONArray();
-            for (LeilaoDTO.LanceDTO lance : leilao.getHistoricoLanceDTOS()) {
-                aux = new JSONObject();
-                aux.put(lance.getUsuario(), lance.getValor());
-                historicoLances.add(aux);
-            }
-
-            JSONObject leil = new JSONObject();
-            leil.put("id", leilao.getId());
-            leil.put("idProponente", leilao.getIdProponente());
-            leil.put("nomeProduto", leilao.getNomeProduto());
-            leil.put("ultimaModificacao", leilao.getUltimaModificacao());
-            leil.put("maiorLance", maiorLance);
-            leil.put("historicoLances", historicoLances);
+            JSONObject leil = dtoParaJso(leilao);
             jsArr.add(leil);
             out.put("leiloes", jsArr);
 

@@ -17,9 +17,9 @@ public class AdaptadorPersistenciaLeilao {
 	public Leilao converterDeDTO(LeilaoDTO l) {
 		Leilao leilao = new Leilao(l.getNomeProduto(), l.getPrecoInicial(), l.getIdProponente());
 		leilao.setId(l.getId());
-		leilao.atualizaMaiorLance(l.getMaiorLanceDTO().getValor(), l.getMaiorLanceDTO().getUsuario());
+		leilao.atualizaMaiorLance(l.getMaiorLance().getValor(), l.getMaiorLance().getUsuario());
 		leilao.setUltimaModificacao(l.getUltimaModificacao());
-		for(LanceDTO lance : l.getHistoricoLanceDTOS()) {
+		for(LanceDTO lance : l.getHistoricoLance()) {
 			leilao.addLance(lance.getValor(), lance.getUsuario());
 		}
 		return leilao;
@@ -31,10 +31,10 @@ public class AdaptadorPersistenciaLeilao {
 		lDTO.setPrecoInicial(l.getPrecoInicial());
 		lDTO.setIdProponente(l.getIdProponente());
 		lDTO.setId(l.getId());
-		lDTO.atualizaMaiorLanceDTO(l.getMaiorLance().getValor(), l.getMaiorLance().getUsuario());
+		lDTO.atualizaMaiorLance(l.getMaiorLance().getValor(), l.getMaiorLance().getUsuario());
 		lDTO.setUltimaModificacao(l.getUltimaModificacao());
 		for(Lance lance : l.getHistoricoLances()) {
-			lDTO.addLanceDTO(lance.getValor(), lance.getUsuario());
+			lDTO.addLance(lance.getValor(), lance.getUsuario());
 		}		
 		return lDTO;
 	}

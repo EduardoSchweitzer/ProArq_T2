@@ -7,13 +7,13 @@ public class LeilaoDTO {
     private String id;
     private String nomeProduto;
     private double precoInicial;
-    private LanceDTO maiorLanceDTO;
-    private ArrayList<LanceDTO> historicoLanceDTOS;
+    private LanceDTO maiorLance;
+    private ArrayList<LanceDTO> historicoLance;
     private String idProponente;
     private long ultimaModificacao;
 
     public LeilaoDTO() {
-        this.historicoLanceDTOS = new ArrayList<>();
+        this.historicoLance = new ArrayList<>();
     }
 
     public String getId() {
@@ -40,24 +40,28 @@ public class LeilaoDTO {
         this.precoInicial = precoInicial;
     }
 
-    public LanceDTO getMaiorLanceDTO() {
-        return maiorLanceDTO;
+    public LanceDTO getMaiorLance() {
+        return maiorLance;
     }
 
     public void setMaiorLance(LanceDTO l) {
-    	this.maiorLanceDTO = l;
+    	this.maiorLance = l;
+    }
+
+    public void setMaiorLance(double valor, String idUsuario) {
+        this.maiorLance = new LanceDTO(valor, idUsuario);
     }
     
-    public void atualizaMaiorLanceDTO(double valor,String usuario) {
-    	this.maiorLanceDTO = new LanceDTO(valor, usuario);
+    public void atualizaMaiorLance(double valor, String usuario) {
+    	this.maiorLance = new LanceDTO(valor, usuario);
     }
 
-    public ArrayList<LanceDTO> getHistoricoLanceDTOS() {
-        return historicoLanceDTOS;
+    public ArrayList<LanceDTO> getHistoricoLance() {
+        return historicoLance;
     }
 
-    public void setHistoricoLanceDTOS(ArrayList<LanceDTO> historicoLanceDTOS) {
-        this.historicoLanceDTOS = historicoLanceDTOS;
+    public void setHistoricoLance(ArrayList<LanceDTO> historicoLance) {
+        this.historicoLance = historicoLance;
     }
 
     public String getIdProponente() {
@@ -68,8 +72,8 @@ public class LeilaoDTO {
         this.idProponente = idProponente;
     }
     
-    public void addLanceDTO(double valor, String usuario) {
-    	historicoLanceDTOS.add(new LanceDTO(valor, usuario));
+    public void addLance(double valor, String usuario) {
+    	historicoLance.add(new LanceDTO(valor, usuario));
     }
 
     public long getUltimaModificacao() {
@@ -99,5 +103,26 @@ public class LeilaoDTO {
         public String getUsuario() {
             return usuario;
         }
+
+        @Override
+        public String toString() {
+            return "{" +
+                    "valor=" + valor +
+                    ", usuario='" + usuario + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "LeilaoDTO{" +
+                "id='" + id + '\'' +
+                ", nomeProduto='" + nomeProduto + '\'' +
+                ", precoInicial=" + precoInicial +
+                ", maiorLance=" + maiorLance +
+                ", historicoLance=" + historicoLance +
+                ", idProponente='" + idProponente + '\'' +
+                ", ultimaModificacao=" + ultimaModificacao +
+                '}';
     }
 }
