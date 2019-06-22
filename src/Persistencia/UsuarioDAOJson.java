@@ -14,8 +14,28 @@ public class UsuarioDAOJson implements UsuarioDAO{
     public UsuarioDAOJson() {
         localBD = "./BancoDados/";
         File bd = new File(localBD);
+
+        //Se a pasta do banco nao existe, criar.
         if (!bd.exists()){
             bd.mkdirs();
+        }
+        bd = new File(localBD + "usuarios.json");
+        BufferedWriter bw;
+
+        //Se o json de usuarios nao existe, criar.
+        if (!bd.exists()) {
+            try {
+                bd.createNewFile();
+                bw = new BufferedWriter(new FileWriter(bd));
+
+                JSONObject us = new JSONObject();
+                JSONArray jArr = new JSONArray();
+                us.put("usuarios", jArr);
+                bw.write(us.toJSONString());
+                bw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -25,32 +45,14 @@ public class UsuarioDAOJson implements UsuarioDAO{
     }
 
     @Override
-    public UsuarioDTO buscarPorId(String id) {
+    public UsuarioDTO buscarPorCpf(String cpf) {
         return null;
     }
 
     @Override
     public void inserir(UsuarioDTO usuario) {
         String caminhoUsuarios = localBD + "usuarios.json";
-        File json = new File(caminhoUsuarios);
         BufferedWriter bw;
-
-        //Criar novo JSON
-        if (!json.exists()) {
-            try {
-                json.createNewFile();
-                bw = new BufferedWriter(new FileWriter(json));
-
-                JSONObject us = new JSONObject();
-                JSONArray jArr = new JSONArray();
-                us.put("usuarios", jArr);
-                bw.write(us.toJSONString());
-                bw.close();
-                System.out.println(us.toJSONString());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
 
         JSONObject usuarios;
         JSONArray jsArr;
