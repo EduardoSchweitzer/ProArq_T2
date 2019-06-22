@@ -1,5 +1,6 @@
 package Persistencia;
 
+import Negocio.Usuario;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -10,9 +11,12 @@ import java.util.ArrayList;
 
 public class UsuarioDAOJson implements UsuarioDAO{
     String localBD;
+    String caminhoUsuarios;
 
     public UsuarioDAOJson() {
         localBD = "./BancoDados/";
+        caminhoUsuarios = localBD + "usuarios.json";
+
         File bd = new File(localBD);
 
         //Se a pasta do banco nao existe, criar.
@@ -46,12 +50,44 @@ public class UsuarioDAOJson implements UsuarioDAO{
 
     @Override
     public UsuarioDTO buscarPorCpf(String cpf) {
+        JSONObject usuarios;
+        JSONArray jsArr;
+        try {
+            usuarios = (JSONObject) new JSONParser().parse(new FileReader(caminhoUsuarios));
+            jsArr = (JSONArray) usuarios.get("usuarios");
+            JSONObject jAux;
+            UsuarioDTO out = new UsuarioDTO();
+            for (Object us : jsArr) {
+                jAux = (JSONObject) us;
+                if (cpf.matches((String)jAux.get("cpf"))) {
+                    return jsoParaDTO(jAux);
+                }
+            }
+            throw new Exception();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
+    }
+
+    public UsuarioDTO jsoParaDTO(JSONObject jso){
+        UsuarioDTO us = new UsuarioDTO();
+        us.setSenha((String)jso.get("senha"));
+        us.setCpf((String)jso.get("cpf"));
+        us.setNome((String)jso.get("nome"));
+        us.setAdmin((boolean)jso.get("admin"));
+        us.setEmail((String)jso.get("email"));
+
+        return us;
     }
 
     @Override
     public void inserir(UsuarioDTO usuario) {
-        String caminhoUsuarios = localBD + "usuarios.json";
         BufferedWriter bw;
 
         JSONObject usuarios;
