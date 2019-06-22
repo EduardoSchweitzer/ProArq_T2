@@ -47,4 +47,15 @@ public class UsuarioDTO {
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
+
+    @Override
+    public String toString() {
+        return "UsuarioDTO{" +
+                "cpf='" + cpf + '\'' +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                ", admin=" + admin +
+                '}';
+    }
 }
