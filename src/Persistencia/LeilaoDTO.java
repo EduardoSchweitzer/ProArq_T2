@@ -9,8 +9,9 @@ public class LeilaoDTO {
     private double precoInicial;
     private LanceDTO maiorLance;
     private ArrayList<LanceDTO> historicoLance;
-    private String idProponente;
+    private String cpfProponente;
     private long ultimaModificacao;
+    private boolean ativo;
 
     public LeilaoDTO() {
         this.historicoLance = new ArrayList<>();
@@ -64,12 +65,12 @@ public class LeilaoDTO {
         this.historicoLance = historicoLance;
     }
 
-    public String getIdProponente() {
-        return idProponente;
+    public String getCpfProponente() {
+        return cpfProponente;
     }
 
-    public void setIdProponente(String idProponente) {
-        this.idProponente = idProponente;
+    public void setCpfProponente(String cpfProponente) {
+        this.cpfProponente = cpfProponente;
     }
     
     public void addLance(double valor, String usuario) {
@@ -82,6 +83,14 @@ public class LeilaoDTO {
 
     public void setUltimaModificacao(long ultimaModificacao) {
         this.ultimaModificacao = ultimaModificacao;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 
     public class LanceDTO {
@@ -121,8 +130,9 @@ public class LeilaoDTO {
                 ", precoInicial=" + precoInicial +
                 ", maiorLance=" + maiorLance +
                 ", historicoLance=" + historicoLance +
-                ", idProponente='" + idProponente + '\'' +
+                ", cpfProponente='" + cpfProponente + '\'' +
                 ", ultimaModificacao=" + ultimaModificacao +
+                ", ativo=" + ativo +
                 '}';
     }
 }

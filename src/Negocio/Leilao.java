@@ -10,17 +10,19 @@ public class Leilao {
 	private double precoInicial;
 	private Lance maiorLance;
 	private ArrayList<Lance> historicoLances;
-	private String idProponente;
+	private String cpfProponente;
 	private long ultimaModificacao;
+	private boolean ativo;
 
-	public Leilao(String nomeProduto, double precoInicial, String idProponente) {
+	public Leilao(String nomeProduto, double precoInicial, String cpfProponente) {
 		this.nomeProduto = nomeProduto;
 		this.precoInicial = precoInicial;
-		this.idProponente = idProponente;
+		this.cpfProponente = cpfProponente;
 		//TODO gerar id
-		this.maiorLance = new Lance(precoInicial, this.idProponente);
+		this.maiorLance = new Lance(precoInicial, this.cpfProponente);
 		this.historicoLances = new ArrayList<>();
 		this.historicoLances.add(maiorLance);
+		this.ativo = true;
 		ultimaModificacao = Calendar.getInstance().getTimeInMillis();
 	}
 
@@ -79,12 +81,12 @@ public class Leilao {
 	}
 
 	//ID proponente
-	public String getIdProponente() {
-		return idProponente;
+	public String getCpfProponente() {
+		return cpfProponente;
 	}
 
-	public void setIdProponente(String idProponente) {
-		this.idProponente = idProponente;
+	public void setCpfProponente(String cpfProponente) {
+		this.cpfProponente = cpfProponente;
 	}
 
 	//Ultima modificação
@@ -96,6 +98,13 @@ public class Leilao {
 		this.ultimaModificacao = ultimaModificacao;
 	}
 
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
 
 	public class Lance {
 

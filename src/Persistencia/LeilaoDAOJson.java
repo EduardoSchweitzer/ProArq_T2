@@ -69,11 +69,55 @@ public class LeilaoDAOJson implements LeilaoDAO {
 
     @Override
     public ArrayList<LeilaoDTO> buscarAtivos() {
+        ArrayList<LeilaoDTO> out = new ArrayList<>();
+        JSONObject leiloes;
+        JSONArray jsArr;
+        try {
+            leiloes = (JSONObject) new JSONParser().parse(new FileReader(caminholeiloes));
+            jsArr = (JSONArray) leiloes.get("leiloes");
+            JSONObject jAux;
+            for (Object le : jsArr) {
+                jAux = (JSONObject) le;
+                if ((boolean)jAux.get("ativo")) {
+                    out.add(jsoParaDTO(jAux));
+                }
+            }
+            return out;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public ArrayList<LeilaoDTO> buscarFinalizados() {
+        ArrayList<LeilaoDTO> out = new ArrayList<>();
+        JSONObject leiloes;
+        JSONArray jsArr;
+        try {
+            leiloes = (JSONObject) new JSONParser().parse(new FileReader(caminholeiloes));
+            jsArr = (JSONArray) leiloes.get("leiloes");
+            JSONObject jAux;
+            for (Object le : jsArr) {
+                jAux = (JSONObject) le;
+                if (!(boolean)jAux.get("ativo")) {
+                    out.add(jsoParaDTO(jAux));
+                }
+            }
+            return out;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -107,18 +151,19 @@ public class LeilaoDAOJson implements LeilaoDAO {
     private LeilaoDTO jsoParaDTO(JSONObject jso){
         LeilaoDTO out = new LeilaoDTO();
         out.setId((String)jso.get("id"));
-        out.setIdProponente((String)jso.get("idProponente"));
+        out.setCpfProponente((String)jso.get("cpfProponente"));
         out.setNomeProduto((String)jso.get("nomeProduto"));
         out.setPrecoInicial((double)jso.get("precoInicial"));
         out.setUltimaModificacao((long)jso.get("ultimaModificacao"));
+        out.setAtivo((boolean)jso.get("ativo"));
         JSONObject maiorLance = (JSONObject)jso.get("maiorLance");
-        out.setMaiorLance((double)maiorLance.get("valor"), (String)maiorLance.get("idUsuario"));
+        out.setMaiorLance((double)maiorLance.get("valor"), (String)maiorLance.get("cpfUsuario"));
         JSONArray jsArr = (JSONArray)jso.get("historicoLances");
 
         JSONObject aux;
         for (Object o : jsArr) {
             aux = (JSONObject)o;
-            out.addLance((double)aux.get("valor"), (String)aux.get("idUsuario"));
+            out.addLance((double)aux.get("valor"), (String)aux.get("cpfUsuario"));
         }
         return out;
     }
@@ -127,25 +172,26 @@ public class LeilaoDAOJson implements LeilaoDAO {
         JSONObject out = new JSONObject();
 
         JSONObject maiorLance = new JSONObject();
-        maiorLance.put("idUsuario", leilao.getMaiorLance().getUsuario());
+        maiorLance.put("cpfUsuario", leilao.getMaiorLance().getUsuario());
         maiorLance.put("valor", leilao.getMaiorLance().getValor());
 
         JSONObject aux;
         JSONArray historicoLances = new JSONArray();
         for (LeilaoDTO.LanceDTO lance : leilao.getHistoricoLance()) {
             aux = new JSONObject();
-            aux.put("idUsuario", lance.getUsuario());
+            aux.put("cpfUsuario", lance.getUsuario());
             aux.put("valor", lance.getValor());
             historicoLances.add(aux);
         }
 
         out.put("id", leilao.getId());
-        out.put("idProponente", leilao.getIdProponente());
+        out.put("cpfProponente", leilao.getCpfProponente());
         out.put("nomeProduto", leilao.getNomeProduto());
         out.put("ultimaModificacao", leilao.getUltimaModificacao());
         out.put("maiorLance", maiorLance);
         out.put("historicoLances", historicoLances);
         out.put("precoInicial", leilao.getPrecoInicial());
+        out.put("ativo", leilao.isAtivo());
 
         return out;
     }
@@ -166,6 +212,7 @@ public class LeilaoDAOJson implements LeilaoDAO {
             out.put("leiloes", jsArr);
 
             bw = new BufferedWriter(new FileWriter(caminholeiloes));
+
             bw.write(out.toJSONString());
             bw.close();
         } catch (IOException e) {
