@@ -20,7 +20,7 @@ public class LeilaoMainInterface {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void leilaoMain() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -66,14 +66,18 @@ public class LeilaoMainInterface {
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnCriarLeilo = new JButton("Criar Leil\u00E3o");
+		btnCriarLeilo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CriarLeilao.criarMain();
+			}
+		});
 		btnCriarLeilo.setBounds(417, 69, 241, 63);
 		frame.getContentPane().add(btnCriarLeilo);
 		
 		JButton btnMeusLeiles = new JButton("Meus Leil\u00F5es");
 		btnMeusLeiles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MeusLeiloes ml = new MeusLeiloes();
-				ml.showMeusLeilos();
+				MeusLeiloes.showMeusLeilos();
 			}
 		});
 		btnMeusLeiles.setBounds(417, 184, 241, 63);
