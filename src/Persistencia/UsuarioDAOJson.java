@@ -45,6 +45,26 @@ public class UsuarioDAOJson implements UsuarioDAO{
 
     @Override
     public ArrayList<UsuarioDTO> buscarTodos() {
+        ArrayList<UsuarioDTO> out = new ArrayList<>();
+        JSONObject usuarios;
+        JSONArray jsArr;
+        try {
+            usuarios = (JSONObject) new JSONParser().parse(new FileReader(caminhoUsuarios));
+            jsArr = (JSONArray) usuarios.get("usuarios");
+            JSONObject jAux;
+            for (Object us : jsArr) {
+                jAux = (JSONObject) us;
+                    out.add(jsoParaDTO(jAux));
+                }
+            return out;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
