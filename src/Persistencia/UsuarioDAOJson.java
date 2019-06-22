@@ -138,6 +138,37 @@ public class UsuarioDAOJson implements UsuarioDAO{
 
     @Override
     public void alterar(UsuarioDTO usuario) {
+        JSONObject usuarios;
+        JSONArray jsArr;
+        BufferedWriter bw;
+        try {
+            usuarios = (JSONObject) new JSONParser().parse(new FileReader(caminhoUsuarios));
+            jsArr = (JSONArray) usuarios.get("usuarios");
+            JSONObject jAux;
+            JSONObject out = new JSONObject();
+            for (Object us : jsArr) {
+                jAux = (JSONObject) us;
+                if (usuario.getCpf().matches((String)jAux.get("cpf"))) {
+                    jAux.replace("nome", usuario.getNome());
+                    jAux.replace("senha", usuario.getSenha());
+                    jAux.replace("email", usuario.getEmail());
+                    jAux.replace("admin", usuario.isAdmin());
+                }
+            }
 
+            out.put("usuarios", jsArr);
+            bw = new BufferedWriter(new FileWriter(caminhoUsuarios));
+            bw.write(out.toJSONString());
+            bw.close();
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
