@@ -40,8 +40,12 @@ public class LeilaoDTO {
         return maiorLanceDTO;
     }
 
-    public void setMaiorLanceDTO(LanceDTO maiorLanceDTO) {
-        this.maiorLanceDTO = maiorLanceDTO;
+    public void setMaiorLance(LanceDTO l) {
+    	this.maiorLanceDTO = l;
+    }
+    
+    public void atualizaMaiorLanceDTO(double valor,String usuario) {
+    	this.maiorLanceDTO = new LanceDTO(valor, usuario);
     }
 
     public ArrayList<LanceDTO> getHistoricoLanceDTOS() {
@@ -59,6 +63,10 @@ public class LeilaoDTO {
     public void setIdProponente(String idProponente) {
         this.idProponente = idProponente;
     }
+    
+    public void addLanceDTO(double valor, String usuario) {
+    	historicoLanceDTOS.add(new LanceDTO(valor, usuario));
+    }
 
     public long getUltimaModificacao() {
         return ultimaModificacao;
@@ -68,7 +76,7 @@ public class LeilaoDTO {
         this.ultimaModificacao = ultimaModificacao;
     }
 
-    private class LanceDTO {
+    public class LanceDTO {
 
         private double valor;
         private String usuario;
@@ -83,17 +91,9 @@ public class LeilaoDTO {
             return valor;
         }
 
-        public void setValor(double valor) {
-            this.valor = valor;
-        }
-
         //Usuario
         public String getUsuario() {
             return usuario;
-        }
-
-        public void setUsuario(String usuario) {
-            this.usuario = usuario;
         }
     }
 }
