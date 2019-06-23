@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JCheckBox;
 
 public class Cadastro {
 
@@ -96,7 +97,7 @@ public class Cadastro {
 				LeilaoMainInterface.leilaoMain();
 			}
 		});
-		btnConfirmar.setBounds(223, 108, 115, 45);
+		btnConfirmar.setBounds(186, 205, 115, 45);
 		frame.getContentPane().add(btnConfirmar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -105,8 +106,11 @@ public class Cadastro {
 				Login.loginMain();
 			}
 		});
-		btnCancelar.setBounds(223, 175, 115, 45);
+		btnCancelar.setBounds(309, 205, 115, 45);
 		frame.getContentPane().add(btnCancelar);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Admin");
+		chckbxNewCheckBox.setBounds(223, 97, 97, 23);
+		frame.getContentPane().add(chckbxNewCheckBox);
 	}
-
 }
