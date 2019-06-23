@@ -59,6 +59,10 @@ public class LeilaoFachada {
         if (leilao == null) {
             throw new LeilaoException("Leilao nao encontrado");
         }
+        
+        if (leilao.getHistoricoLances().get(leilao.getHistoricoLances().size()-1).getValor() >= valor) {
+        	throw new LeilaoException("Valor invalido");
+        }
         leilao.addLance(valor, cpfUsuario);
         alterar(leilao);
 

@@ -105,19 +105,23 @@ public class Login {
 		
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Negocio.Usuario usuarioAutual = null;
+				Negocio.Usuario usuarioAtual = null;
 				boolean invalido = false;
 				try {
-					usuarioAutual = new Negocio.UsuarioFachada().buscarPorEmail(tfEmail.getText());
+					usuarioAtual = new Negocio.UsuarioFachada().buscarPorEmail(tfEmail.getText());
 					
 				} catch (Negocio.UsuarioException exc) {
 					lblAviso.setText("Email invalido");
 					invalido = true;
 				}
 				
-				if (usuarioAutual != null) {
+				if (usuarioAtual != null) {
 					frmLogin.dispose();
-					LeilaoMainInterface.leilaoMain();
+					if (usuarioAtual.isAdmin()) {
+						LeilaoMainInterfaceAdmin.leilaoMain();
+					} else {
+						LeilaoMainInterface.leilaoMain(usuarioAtual);
+					}
 				} else {
 					if (!invalido) {
 						lblAviso.setText("Usuario nao econtrado");

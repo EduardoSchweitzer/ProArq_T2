@@ -15,21 +15,24 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class CriarLeilao {
 
 	private JFrame frmCriarLeilo;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField tfNomeProduto;
+	private JTextField tfValor;
+	private Negocio.Usuario usuarioAtual;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void criarMain() {
+	public static void criarMain(Negocio.Usuario usuarioAtual) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CriarLeilao window = new CriarLeilao();
+					CriarLeilao window = new CriarLeilao(usuarioAtual);
 					window.frmCriarLeilo.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +44,8 @@ public class CriarLeilao {
 	/**
 	 * Create the application.
 	 */
-	public CriarLeilao() {
+	public CriarLeilao(Negocio.Usuario usuarioAtual) {
+		this.usuarioAtual = usuarioAtual;
 		initialize();
 	}
 
@@ -66,20 +70,20 @@ public class CriarLeilao {
 		lblNomeDoProduto.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		frmCriarLeilo.getContentPane().add(lblNomeDoProduto);
 		
-		textField = new JTextField();
-		textField.setBounds(45, 110, 265, 20);
-		frmCriarLeilo.getContentPane().add(textField);
-		textField.setColumns(10);
+		tfNomeProduto = new JTextField();
+		tfNomeProduto.setBounds(45, 110, 265, 20);
+		frmCriarLeilo.getContentPane().add(tfNomeProduto);
+		tfNomeProduto.setColumns(10);
 		
 		JLabel lblValorInicial = new JLabel("Valor Inicial");
 		lblValorInicial.setBounds(45, 130, 265, 24);
 		lblValorInicial.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		frmCriarLeilo.getContentPane().add(lblValorInicial);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(45, 154, 265, 20);
-		frmCriarLeilo.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		tfValor = new JTextField();
+		tfValor.setBounds(45, 154, 265, 20);
+		frmCriarLeilo.getContentPane().add(tfValor);
+		tfValor.setColumns(10);
 		
 		JButton btnCriar = new JButton("Criar");
 		btnCriar.setBounds(45, 185, 265, 23);
@@ -87,23 +91,53 @@ public class CriarLeilao {
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(45, 214, 265, 23);
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frmCriarLeilo.dispose();
-				LeilaoMainInterface.leilaoMain();
-			}
-		});
+		
 		frmCriarLeilo.getContentPane().add(btnCancelar);
+		
+		JLabel lblInvalido = new JLabel("");
+		lblInvalido.setForeground(Color.RED);
+		lblInvalido.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInvalido.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblInvalido.setBounds(45, 64, 265, 24);
+		frmCriarLeilo.getContentPane().add(lblInvalido);
 		
 		frmCriarLeilo.addWindowListener(new WindowAdapter()
         {
             @Override
             public void windowClosing(WindowEvent e)
             {
-                LeilaoMainInterface.leilaoMain();
+                LeilaoMainInterface.leilaoMain(usuarioAtual);
                 e.getWindow().dispose();
             }
         });
+		
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmCriarLeilo.dispose();
+				LeilaoMainInterface.leilaoMain(usuarioAtual);
+			}
+		});
+		
+		btnCriar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				boolean invalido = false;
+				try {
+					new Negocio.LeilaoFachada().inserir(
+							tfNomeProduto.getText(), 
+							Double.valueOf(tfValor.getText()), 
+							usuarioAtual.getCpf());
+				} catch (Negocio.LeilaoException exc) {
+					lblInvalido.setText("Dados invalidos.");
+					invalido = true;
+				} catch (Persistencia.LeilaoDAOIdDuplicadoException exc) {
+					invalido = true;
+				}
+				
+				if (!invalido) {
+					frmCriarLeilo.dispose();
+					LeilaoMainInterface.leilaoMain(usuarioAtual);
+				}
+			}
+		});
 	}
-
 }

@@ -54,11 +54,11 @@ public class Usuario {
 
 	//Admin
 	public void setAdmin(boolean admin) {
-
+		this.admin = admin;
 	}
 
 	public boolean isAdmin() {
-		return false;
+		return this.admin;
 	}
 
 }

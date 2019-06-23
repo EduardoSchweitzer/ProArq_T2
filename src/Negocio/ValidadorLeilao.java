@@ -7,7 +7,7 @@ public class ValidadorLeilao {
 	public ValidadorLeilao() {}
 	
 	public boolean validaPreco(double preco) {
-		return preco < 0;
+		return preco > 0;
 	}
 
 	public boolean validaString(String texto) {
@@ -15,11 +15,15 @@ public class ValidadorLeilao {
 	}
 
 	public boolean validaLance(Lance lance) {
-		return lance.getValor() < 0;
+		return lance.getValor() > 0;
 	}
 	
 	public boolean validaMaiorLance(Lance lance, Leilao leilao) {
-		return leilao.getMaiorLance().getValor( )> lance.getValor();
+		return leilao.getMaiorLance().getValor( ) < lance.getValor();
+	}
+	
+	public boolean validaMaiorLance(double lance, Leilao leilao) {
+		return leilao.getMaiorLance().getValor( ) < lance;
 	}
 	
 	public boolean lanceValido(Lance lance, Leilao leilao) {
@@ -27,7 +31,7 @@ public class ValidadorLeilao {
 	}
 
 	public boolean validaId(String id) {
-		return id.length() == 9;
+		return id.length() > 0;
 	}
 
 }

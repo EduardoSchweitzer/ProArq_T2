@@ -36,11 +36,11 @@ public class LeilaoMainInterface {
 	/**
 	 * Launch the application.
 	 */
-	public static void leilaoMain() {
+	public static void leilaoMain(Negocio.Usuario usuarioAtual) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LeilaoMainInterface window = new LeilaoMainInterface();
+					LeilaoMainInterface window = new LeilaoMainInterface(usuarioAtual);
 					window.frmPaginaInicial.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +52,8 @@ public class LeilaoMainInterface {
 	/**
 	 * Create the application.
 	 */
-	public LeilaoMainInterface() {
+	public LeilaoMainInterface(Negocio.Usuario usuarioAtual) {
+		this.usuarioAtual = usuarioAtual;
 		leilaoFachada = new LeilaoFachada();
 		leiloes = new ArrayList<Leilao>();
 		initialize();
@@ -69,15 +70,19 @@ public class LeilaoMainInterface {
 		frmPaginaInicial.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmPaginaInicial.getContentPane().setLayout(null);
 		
+		JLabel lblUsurioName = new JLabel("  Usu\u00E1rio : " + usuarioAtual.getNome());
+		lblUsurioName.setBounds(0, 6, 347, 14);
+		frmPaginaInicial.getContentPane().add(lblUsurioName);
+		
 		JLabel lblNewLabel = new JLabel("Leil\u00F5es ativos");
-		lblNewLabel.setBounds(47, 14, 300, 24);
+		lblNewLabel.setBounds(47, 20, 300, 24);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBackground(Color.WHITE);
 		frmPaginaInicial.getContentPane().add(lblNewLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(47, 63, 300, 331);
+		scrollPane.setBounds(47, 69, 300, 331);
 		frmPaginaInicial.getContentPane().add(scrollPane);
 		
 				JList listaLeiloes = atualizarListaLeiloes();
@@ -86,23 +91,24 @@ public class LeilaoMainInterface {
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
 						Leilao leilao = leiloes.get(listaLeiloes.getSelectedIndex());
-						LeilaoAtual.leilaoAtualMain(leilao);
+						LeilaoAtual.leilaoAtualMain(leilao, usuarioAtual);
+						frmPaginaInicial.dispose();
 					}
 				});
 				scrollPane.setViewportView(listaLeiloes);
 				listaLeiloes.setBackground(Color.WHITE);
 		
 		JButton btnCriarLeilo = new JButton("Criar Leil\u00E3o");
-		btnCriarLeilo.setBounds(47, 429, 300, 23);
+		btnCriarLeilo.setBounds(47, 435, 300, 23);
 		btnCriarLeilo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CriarLeilao.criarMain();
+				CriarLeilao.criarMain(usuarioAtual);
 				frmPaginaInicial.dispose();
 			}
 		});
 		
 		JButton btnMeusLeiles = new JButton("Meus Leil\u00F5es");
-		btnMeusLeiles.setBounds(47, 400, 300, 23);
+		btnMeusLeiles.setBounds(47, 406, 300, 23);
 		btnMeusLeiles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				MeusLeiloes.showMeusLeilos();
@@ -110,17 +116,16 @@ public class LeilaoMainInterface {
 		});
 		frmPaginaInicial.getContentPane().add(btnMeusLeiles);
 		frmPaginaInicial.getContentPane().add(btnCriarLeilo);
-		
-				
 	}
 	
 	public JList atualizarListaLeiloes() {
-	leiloes = leilaoFachada.buscarAtivos();
-	String[] nomes = new String[leiloes.size()];
-	for (int i = 0; i < leiloes.size(); i++) {
-		nomes[i] = leiloes.get(i).getNomeProduto();
+		leiloes = leilaoFachada.buscarAtivos();
+		String[] nomes = new String[leiloes.size()];
+		for (int i = 0; i < leiloes.size(); i++) {
+			nomes[i] = leiloes.get(i).getNomeProduto();
+		}
+		JList<String> listaLeiloes = new JList<>(nomes);
+		return listaLeiloes;
 	}
-	JList<String> listaLeiloes = new JList<>(nomes);
-	return listaLeiloes;
-}
+	
 }

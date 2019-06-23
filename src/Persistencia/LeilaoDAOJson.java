@@ -231,19 +231,21 @@ public class LeilaoDAOJson implements LeilaoDAO {
     public void alterar(LeilaoDTO leilao) throws LeilaoDAOIdInexistenteException {
         JSONObject leiloes;
         JSONArray jsArr;
+        JSONArray arrAux = new JSONArray();;
         BufferedWriter bw;
         boolean encontrado = false;
         try {
             leiloes = (JSONObject) new JSONParser().parse(new FileReader(caminholeiloes));
-            jsArr = (JSONArray) leiloes.get("usuarios");
+            jsArr = (JSONArray) leiloes.get("leiloes");
             JSONObject jAux;
             JSONObject out = new JSONObject();
             for (Object us : jsArr) {
                 jAux = (JSONObject) us;
                 if (leilao.getId().matches((String)jAux.get("id"))) {
-                    jsArr.remove(jAux);
-                    jsArr.add(dtoParaJso(leilao));
+                	arrAux.add(dtoParaJso(leilao));
                     encontrado = true;
+                } else {
+        			arrAux.add(jAux);
                 }
             }
 
@@ -251,7 +253,7 @@ public class LeilaoDAOJson implements LeilaoDAO {
                 throw new LeilaoDAOIdInexistenteException("Leilao id " + leilao.getId() + " nao econtrado");
             }
 
-            out.put("leiloes", jsArr);
+            out.put("leiloes", arrAux);
             bw = new BufferedWriter(new FileWriter(caminholeiloes));
             bw.write(out.toJSONString());
             bw.close();

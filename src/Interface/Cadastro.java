@@ -21,6 +21,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
+import javax.swing.SwingConstants;
 
 public class Cadastro {
 
@@ -119,9 +120,9 @@ public class Cadastro {
 		pfConfirmarSenha.setBounds(45, 303, 294, 20);
 		frmCadastro.getContentPane().add(pfConfirmarSenha);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Admin");
-		chckbxNewCheckBox.setBounds(45, 329, 70, 23);
-		frmCadastro.getContentPane().add(chckbxNewCheckBox);
+		JCheckBox chckbxAdmin = new JCheckBox("Admin");
+		chckbxAdmin.setBounds(45, 329, 70, 23);
+		frmCadastro.getContentPane().add(chckbxAdmin);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(45, 380, 294, 34);
@@ -137,20 +138,11 @@ public class Cadastro {
 		panel.add(btnConfirmar);
 		btnConfirmar.setMaximumSize(new Dimension(90, 25));
 		btnConfirmar.setMinimumSize(new Dimension(90, 25));
-		btnConfirmar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				LeilaoMainInterface.leilaoMain();
-			}
-		});
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frmCadastro.dispose();
-				Login.loginMain();
-			}
-		});
+		
 		
 		JLabel lblXInvalido = new JLabel("");
-		lblXInvalido.setBounds(192, 457, 0, 0);
+		lblXInvalido.setHorizontalAlignment(SwingConstants.CENTER);
+		lblXInvalido.setBounds(45, 424, 294, 22);
 		lblXInvalido.setForeground(Color.RED);
 		lblXInvalido.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		frmCadastro.getContentPane().add(lblXInvalido);
@@ -164,5 +156,50 @@ public class Cadastro {
                 e.getWindow().dispose();
             }
         });
+		
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean invalido = false;
+				if (pfSenha.getPassword().length >= 4) {
+					if (new String(pfSenha.getPassword()).matches(new String(pfConfirmarSenha.getPassword()))) {
+						try {
+							new Negocio.UsuarioFachada().inserir(
+									tfCpf.getText(), 
+									tfNome.getText(), 
+									tfEmail.getText(), 
+									new String(pfSenha.getPassword()).toLowerCase(), 
+									chckbxAdmin.isSelected());;
+						} catch (Negocio.UsuarioException exc) {
+							lblXInvalido.setText("Dados Invalidos.");
+							invalido = true;
+						} catch (Persistencia.UsuarioDAOCpfDuplicadoException exc) {
+							lblXInvalido.setText("Este CPF ja esta cadastrado.");
+							invalido = true;
+						} catch (Persistencia.UsuarioDAOEmailDuplicadoException exc) {
+							lblXInvalido.setText("Este Email ja esta cadastrado.");
+							invalido = true;
+						}
+					} else {
+						lblXInvalido.setText("As senhas sao diferentes.");
+						invalido = true;
+					}
+				} else {
+					lblXInvalido.setText("Senha muito pequena.");
+					invalido = true;
+				}
+				
+				if (!invalido) {
+					frmCadastro.dispose();
+					Login.loginMain();
+				}
+			}
+		});
+		
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmCadastro.dispose();
+				Login.loginMain();
+			}
+		});
 	}
 }
