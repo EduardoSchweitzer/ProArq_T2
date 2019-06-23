@@ -91,7 +91,11 @@ public class LeilaoMainInterface {
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
 						Leilao leilao = leiloes.get(listaLeiloes.getSelectedIndex());
-						LeilaoAtual.leilaoAtualMain(leilao, usuarioAtual);
+						if (leilao.getCpfProponente().matches(usuarioAtual.getCpf())) {
+							LeilaoAtualProponente.leilaoAtualMain(leilao, usuarioAtual);
+						} else {
+							LeilaoAtual.leilaoAtualMain(leilao, usuarioAtual);
+						}
 						frmPaginaInicial.dispose();
 					}
 				});
@@ -111,7 +115,8 @@ public class LeilaoMainInterface {
 		btnMeusLeiles.setBounds(47, 406, 300, 23);
 		btnMeusLeiles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MeusLeiloes.showMeusLeilos();
+				MeusLeiloes.showMeusLeilos(usuarioAtual);
+				frmPaginaInicial.dispose();
 			}
 		});
 		frmPaginaInicial.getContentPane().add(btnMeusLeiles);
