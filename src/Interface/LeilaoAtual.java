@@ -74,7 +74,7 @@ public class LeilaoAtual {
 		
 		list = new JList();
 		scrollPane.setViewportView(list);
-		list.setBackground(Color.DARK_GRAY);
+		list.setBackground(Color.WHITE);
 		
 		btnDarLance = new JButton("Dar lance");
 		btnDarLance.setFont(new Font("Tahoma", Font.PLAIN, 15));
