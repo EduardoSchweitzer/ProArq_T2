@@ -37,10 +37,24 @@ public class AdaptadorPersistenciaUsuario {
 	}
 	
 	
-	public void inserir(Usuario u) {
+	public void inserir(Usuario u) throws UsuarioDAOCpfDuplicadoException, UsuarioDAOEmailDuplicadoException {
 		UsuarioDTO uDTO = converterParaDTO(u);
 		uDAO.inserir(uDTO);
 
 	}
+
+	public void alterar(Usuario usuario) throws UsuarioDAOCpfInexistenteException {
+		uDAO.alterar(converterParaDTO(usuario));
+	}
+
+	public Usuario buscarPorCpf(String cpf) {
+		return converterDeDTO(uDAO.buscarPorCpf(cpf));
+	}
+
+	public Usuario buscarPorEmailf(String email) {
+		return converterDeDTO(uDAO.buscarPorEmail(email));
+	}
+
+
 
 }

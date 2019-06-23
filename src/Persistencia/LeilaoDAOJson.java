@@ -64,7 +64,7 @@ public class LeilaoDAOJson implements LeilaoDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
@@ -91,7 +91,7 @@ public class LeilaoDAOJson implements LeilaoDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
@@ -118,7 +118,7 @@ public class LeilaoDAOJson implements LeilaoDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
@@ -136,7 +136,6 @@ public class LeilaoDAOJson implements LeilaoDAO {
                     return jsoParaDTO(jAux);
                 }
             }
-            throw new Exception();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -197,12 +196,15 @@ public class LeilaoDAOJson implements LeilaoDAO {
     }
 
     @Override
-    public void inserir(LeilaoDTO leilao) {
+    public void inserir(LeilaoDTO leilao) throws LeilaoDAOIdDuplicadoException {
         BufferedWriter bw;
-
         JSONObject le;
         JSONArray jsArr;
         try {
+            if (buscarPorId(leilao.getId()) != null) {
+                throw new LeilaoDAOIdDuplicadoException("Leilao id " + leilao.getId() + " ja existe");
+            }
+
             le = (JSONObject) new JSONParser().parse(new FileReader(caminholeiloes));
             jsArr = (JSONArray) le.get("leiloes");
             JSONObject out = new JSONObject();
@@ -219,11 +221,50 @@ public class LeilaoDAOJson implements LeilaoDAO {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new LeilaoDAOIdDuplicadoException(e.getMessage());
         }
     }
 
     @Override
-    public void alterar(LeilaoDTO leilao) {
+    public void alterar(LeilaoDTO leilao) throws LeilaoDAOIdInexistenteException {
+        JSONObject leiloes;
+        JSONArray jsArr;
+        BufferedWriter bw;
+        boolean encontrado = false;
+        try {
+            leiloes = (JSONObject) new JSONParser().parse(new FileReader(caminholeiloes));
+            jsArr = (JSONArray) leiloes.get("usuarios");
+            JSONObject jAux;
+            JSONObject out = new JSONObject();
+            for (Object us : jsArr) {
+                jAux = (JSONObject) us;
+                if (leilao.getId().matches((String)jAux.get("id"))) {
+                    jsArr.remove(jAux);
+                    jsArr.add(dtoParaJso(leilao));
+                    encontrado = true;
+                }
+            }
 
+            if (!encontrado) {
+                throw new LeilaoDAOIdInexistenteException("Leilao id " + leilao.getId() + " nao econtrado");
+            }
+
+            out.put("leiloes", jsArr);
+            bw = new BufferedWriter(new FileWriter(caminholeiloes));
+            bw.write(out.toJSONString());
+            bw.close();
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new LeilaoDAOIdInexistenteException(e.getMessage());
+        }
     }
 }

@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public interface UsuarioDAO {
     ArrayList<UsuarioDTO> buscarTodos();
-    UsuarioDTO buscarPorCpf(String id);
-    void inserir(UsuarioDTO usuario);
-    void alterar(UsuarioDTO usuario);
+    UsuarioDTO buscarPorCpf(String cpf);
+    UsuarioDTO buscarPorEmail(String email);
+    void inserir(UsuarioDTO usuario) throws UsuarioDAOCpfDuplicadoException, UsuarioDAOEmailDuplicadoException;
+    void alterar(UsuarioDTO usuario) throws UsuarioDAOCpfInexistenteException;
 }

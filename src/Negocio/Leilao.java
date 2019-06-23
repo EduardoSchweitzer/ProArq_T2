@@ -26,6 +26,17 @@ public class Leilao {
 		ultimaModificacao = Calendar.getInstance().getTimeInMillis();
 	}
 
+	public Leilao(String id, String nomeProduto, double precoInicial, Lance maiorLance, ArrayList<Lance> historicoLances, String cpfProponente, long ultimaModificacao, boolean ativo) {
+		this.id = id;
+		this.nomeProduto = nomeProduto;
+		this.precoInicial = precoInicial;
+		this.maiorLance = maiorLance;
+		this.historicoLances = historicoLances;
+		this.cpfProponente = cpfProponente;
+		this.ultimaModificacao = ultimaModificacao;
+		this.ativo = ativo;
+	}
+
 	//ID
 	public String getId() {
 		return id;
