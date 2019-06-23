@@ -43,4 +43,18 @@ public class AdaptadorPersistenciaUsuario {
 
 	}
 
+	public void alterar(Usuario usuario) throws UsuarioDAOCpfInexistenteException {
+		uDAO.alterar(converterParaDTO(usuario));
+	}
+
+	public Usuario buscarPorCpf(String cpf) {
+		return converterDeDTO(uDAO.buscarPorCpf(cpf));
+	}
+
+	public Usuario buscarPorEmailf(String email) {
+		return converterDeDTO(uDAO.buscarPorEmail(email));
+	}
+
+
+
 }
