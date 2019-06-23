@@ -8,31 +8,37 @@ import javax.swing.SwingConstants;
 
 import Negocio.Leilao;
 import java.awt.Font;
-import javax.swing.JList;
-import java.awt.Color;
+
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.JTable;
+import javax.swing.JPanel;
+import java.awt.Dimension;
 
 public class LeilaoAtual {
 
 	private JFrame frame;
 	private static JLabel lblValueLabel;
 	private static JLabel lblProductLabel;
-	private JList list;
 	private JScrollPane scrollPane;
 	private JButton btnDarLance;
 	private JTextField textField;
+	private Leilao leilao;
+	private JTable table;
+	private JPanel panel;
+	private JLabel lblMaiorLance;
+	private JLabel label;
 
 
 	/**
 	 * Launch the application.
 	 */
-	public static void leilaoAtualMain() {
+	public static void leilaoAtualMain(Leilao leilao) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LeilaoAtual window = new LeilaoAtual();
+					LeilaoAtual window = new LeilaoAtual(leilao);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +50,8 @@ public class LeilaoAtual {
 	/**
 	 * Create the application.
 	 */
-	public LeilaoAtual() {
+	public LeilaoAtual(Leilao leilao) {
+		this.leilao = leilao;
 		initialize();
 	}
 
@@ -53,44 +60,46 @@ public class LeilaoAtual {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 593, 382);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setMinimumSize(new Dimension(300, 300));
+		frame.setBounds(100, 100, 300, 300);
+		frame.setTitle(leilao.getNomeProduto());
 		frame.getContentPane().setLayout(null);
 		
-		lblProductLabel = new JLabel("New label");
-		lblProductLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
+		lblProductLabel = new JLabel(leilao.getNomeProduto());
+		lblProductLabel.setBounds(88, 34, 106, 22);
+		lblProductLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblProductLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblProductLabel.setBounds(38, 24, 109, 45);
 		frame.getContentPane().add(lblProductLabel);
 		
-		lblValueLabel = new JLabel("New label");
-		lblValueLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblValueLabel.setBounds(289, 24, 109, 45);
-		frame.getContentPane().add(lblValueLabel);
+		panel = new JPanel();
+		panel.setBounds(0, 88, 282, 29);
+		frame.getContentPane().add(panel);
 		
-		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 339, 188, -224);
-		frame.getContentPane().add(scrollPane);
+		lblMaiorLance = new JLabel("Maior Lance: ");
+		lblMaiorLance.setFont(new Font("Tahoma", Font.BOLD, 14));
+		panel.add(lblMaiorLance);
 		
-		list = new JList();
-		scrollPane.setViewportView(list);
-		list.setBackground(Color.WHITE);
-		
-		btnDarLance = new JButton("Dar lance");
-		btnDarLance.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnDarLance.setBounds(337, 111, 139, 65);
-		frame.getContentPane().add(btnDarLance);
+		lblValueLabel = new JLabel(String.valueOf(leilao.getMaiorLance().getValor()));
+		panel.add(lblValueLabel);
+		lblValueLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		textField = new JTextField();
-		textField.setBounds(337, 211, 139, 20);
+		textField.setBounds(68, 140, 140, 20);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
-	}
-	
-	public static void recebeLeilao(Leilao leilao) {
-		lblProductLabel.setText(leilao.getNomeProduto());
-		lblValueLabel.setText(String.valueOf(leilao.getMaiorLance().getValor()));
 		
+		btnDarLance = new JButton("Dar lance");
+		btnDarLance.setBounds(68, 166, 140, 27);
+		btnDarLance.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		frame.getContentPane().add(btnDarLance);
+		
+		label = new JLabel("");
+		label.setBounds(0, 219, 282, 0);
+		frame.getContentPane().add(label);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(282, 246, 2, -30);
+		frame.getContentPane().add(scrollPane);
 	}
-
 }

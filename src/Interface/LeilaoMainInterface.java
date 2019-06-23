@@ -10,22 +10,23 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import Negocio.Leilao;
-import Persistencia.LeilaoDAOJson;
-import Persistencia.LeilaoDTO;
+import Negocio.LeilaoFachada;
 
 import java.awt.Font;
 
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 
 public class LeilaoMainInterface {
 
 	private JFrame frame;
+	private ArrayList<Leilao> leiloes;
+	private LeilaoFachada leilaoFachada;
 
 	/**
 	 * Launch the application.
@@ -47,6 +48,8 @@ public class LeilaoMainInterface {
 	 * Create the application.
 	 */
 	public LeilaoMainInterface() {
+		leilaoFachada = new LeilaoFachada();
+		leiloes = new ArrayList<Leilao>();
 		initialize();
 	}
 
@@ -62,29 +65,19 @@ public class LeilaoMainInterface {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(0, 42, 325, 437);
 		frame.getContentPane().add(scrollPane);
-		
-		LeilaoDAOJson dao = new LeilaoDAOJson();
-		DefaultListModel<String> leiloes = new DefaultListModel<>();
-		int index = 0;
-		for(LeilaoDTO l : dao.buscarAtivos()) {
-			leiloes.add(index,l.getNomeProduto());
-			index++;
-		}
 
-		
-		JList list = new JList();
-		list.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		list.setModel(leiloes);
-		list.addMouseListener(new MouseAdapter() {
+		JList listaLeiloes = atualizarListaLeiloes();
+		listaLeiloes.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		listaLeiloes.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Leilao leilao = (Leilao) list.getSelectedValue();
-				LeilaoAtual.leilaoAtualMain();
-				LeilaoAtual.recebeLeilao(leilao);
+				Leilao leilao = leiloes.get(listaLeiloes.getSelectedIndex());
+				LeilaoAtual.leilaoAtualMain(leilao);
 			}
 		});
-		scrollPane.setViewportView(list);
-		list.setBackground(Color.WHITE);
+		scrollPane.setViewportView(listaLeiloes);
+		listaLeiloes.setBackground(Color.WHITE);
+		atualizarListaLeiloes();
 		
 		JLabel lblNewLabel = new JLabel("Leil\u00F5es ativos");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -112,5 +105,15 @@ public class LeilaoMainInterface {
 		frame.getContentPane().add(btnMeusLeiles);
 		
 				
+	}
+	
+	public JList atualizarListaLeiloes() {
+		leiloes = leilaoFachada.buscarAtivos();
+		String[] nomes = new String[leiloes.size()];
+		for (int i = 0; i < leiloes.size(); i++) {
+			nomes[i] = leiloes.get(i).getNomeProduto();
+		}
+		JList<String> listaLeiloes = new JList<>(nomes);
+		return listaLeiloes;
 	}
 }

@@ -10,14 +10,20 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
+import javax.swing.JPanel;
+import java.awt.FlowLayout;
+import javax.swing.JPasswordField;
+import java.awt.Color;
+import java.awt.Dimension;
 
 public class Cadastro {
 
-	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JFrame frmCadastro;
+	private JTextField tfNome;
+	private JTextField tfCpf;
+	private JTextField tfEmail;
+	private JPasswordField pfSenha;
+	private JPasswordField pfConfirmarSenha;
 
 	/**
 	 * Launch the application.
@@ -27,7 +33,7 @@ public class Cadastro {
 			public void run() {
 				try {
 					Cadastro window = new Cadastro();
-					window.frame.setVisible(true);
+					window.frmCadastro.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -46,71 +52,99 @@ public class Cadastro {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmCadastro = new JFrame();
+		frmCadastro.setMinimumSize(new Dimension(400, 500));
+		frmCadastro.setTitle("Cadastro");
+		frmCadastro.setBounds(100, 100, 400, 500);
+		frmCadastro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmCadastro.getContentPane().setLayout(null);
+		
+		JLabel lblNovaConta = new JLabel("Criar uma nova conta");
+		lblNovaConta.setBounds(58, 11, 268, 34);
+		frmCadastro.getContentPane().add(lblNovaConta);
+		lblNovaConta.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		
 		JLabel lblNome = new JLabel("Nome");
+		lblNome.setBounds(45, 59, 36, 17);
+		frmCadastro.getContentPane().add(lblNome);
 		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNome.setBounds(10, 11, 69, 24);
-		frame.getContentPane().add(lblNome);
 		
-		JLabel lblCpf = new JLabel("Cpf");
-		lblCpf.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblCpf.setBounds(10, 77, 69, 24);
-		frame.getContentPane().add(lblCpf);
+		tfNome = new JTextField();
+		tfNome.setBounds(45, 82, 294, 20);
+		frmCadastro.getContentPane().add(tfNome);
+		tfNome.setColumns(10);
 		
 		JLabel lblEmail = new JLabel("Email");
+		lblEmail.setBounds(45, 108, 31, 17);
+		frmCadastro.getContentPane().add(lblEmail);
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblEmail.setBounds(10, 141, 69, 24);
-		frame.getContentPane().add(lblEmail);
+		
+		tfEmail = new JTextField();
+		tfEmail.setBounds(45, 131, 294, 20);
+		frmCadastro.getContentPane().add(tfEmail);
+		tfEmail.setColumns(10);
+		
+		JLabel lblCpf = new JLabel("Cpf");
+		lblCpf.setBounds(45, 157, 21, 17);
+		frmCadastro.getContentPane().add(lblCpf);
+		lblCpf.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		tfCpf = new JTextField();
+		tfCpf.setBounds(45, 180, 294, 20);
+		frmCadastro.getContentPane().add(tfCpf);
+		tfCpf.setColumns(10);
 		
 		JLabel lblSenha = new JLabel("Senha");
+		lblSenha.setBounds(45, 206, 38, 17);
+		frmCadastro.getContentPane().add(lblSenha);
 		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblSenha.setBounds(223, 11, 69, 24);
-		frame.getContentPane().add(lblSenha);
 		
-		textField = new JTextField();
-		textField.setBounds(10, 46, 132, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		pfSenha = new JPasswordField();
+		pfSenha.setBounds(45, 229, 294, 20);
+		frmCadastro.getContentPane().add(pfSenha);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(10, 109, 132, 20);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		JLabel lblConfirmarSenha = new JLabel("Confirmar senha");
+		lblConfirmarSenha.setBounds(45, 255, 294, 17);
+		lblConfirmarSenha.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		frmCadastro.getContentPane().add(lblConfirmarSenha);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(10, 176, 132, 20);
-		frame.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
+		pfConfirmarSenha = new JPasswordField();
+		pfConfirmarSenha.setBounds(45, 278, 294, 20);
+		frmCadastro.getContentPane().add(pfConfirmarSenha);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(220, 46, 132, 20);
-		frame.getContentPane().add(textField_3);
-		textField_3.setColumns(10);
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Admin");
+		chckbxNewCheckBox.setBounds(45, 304, 70, 23);
+		frmCadastro.getContentPane().add(chckbxNewCheckBox);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(58, 355, 268, 34);
+		frmCadastro.getContentPane().add(panel);
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		panel.add(btnCancelar);
+		btnCancelar.setMinimumSize(new Dimension(90, 25));
+		btnCancelar.setMaximumSize(new Dimension(90, 25));
 		
 		JButton btnConfirmar = new JButton("Confirmar");
+		panel.add(btnConfirmar);
+		btnConfirmar.setMaximumSize(new Dimension(90, 25));
+		btnConfirmar.setMinimumSize(new Dimension(90, 25));
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				LeilaoMainInterface.leilaoMain();
 			}
 		});
-		btnConfirmar.setBounds(186, 205, 115, 45);
-		frame.getContentPane().add(btnConfirmar);
-		
-		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login.loginMain();
 			}
 		});
-		btnCancelar.setBounds(309, 205, 115, 45);
-		frame.getContentPane().add(btnCancelar);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Admin");
-		chckbxNewCheckBox.setBounds(223, 97, 97, 23);
-		frame.getContentPane().add(chckbxNewCheckBox);
+		JLabel lblXInvalido = new JLabel("");
+		lblXInvalido.setBounds(192, 432, 0, 0);
+		lblXInvalido.setForeground(Color.RED);
+		lblXInvalido.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		frmCadastro.getContentPane().add(lblXInvalido);
 	}
 }
