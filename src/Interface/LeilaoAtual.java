@@ -60,6 +60,7 @@ public class LeilaoAtual {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setMinimumSize(new Dimension(300, 300));
 		frame.setBounds(100, 100, 300, 300);
 		frame.setTitle(leilao.getNomeProduto());
