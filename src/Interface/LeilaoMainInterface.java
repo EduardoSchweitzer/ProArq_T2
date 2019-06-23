@@ -31,6 +31,7 @@ public class LeilaoMainInterface {
 	private JFrame frmPaginaInicial;
 	private ArrayList<Leilao> leiloes;
 	private LeilaoFachada leilaoFachada;
+	private Negocio.Usuario usuarioAtual;
 
 	/**
 	 * Launch the application.

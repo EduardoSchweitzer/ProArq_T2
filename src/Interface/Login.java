@@ -14,12 +14,15 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import java.awt.Dimension;
+import java.awt.Color;
+import java.awt.Component;
+import javax.swing.SwingConstants;
 
 public class Login {
 
 	private JFrame frmLogin;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField tfEmail;
+	private JTextField tfSenha;
 
 	/**
 	 * Launch the application.
@@ -62,44 +65,72 @@ public class Login {
 		lblEntrar.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		frmLogin.getContentPane().add(lblEntrar);
 		
-		JLabel lblUsurio = new JLabel("Email");
-		lblUsurio.setBounds(50, 114, 33, 19);
-		lblUsurio.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		frmLogin.getContentPane().add(lblUsurio);
+		JLabel lblEmail = new JLabel("Email");
+		lblEmail.setBounds(50, 114, 33, 19);
+		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		frmLogin.getContentPane().add(lblEmail);
 		
 		JLabel lblSenha = new JLabel("Senha");
-		lblSenha.setBounds(50, 166, 40, 19);
+		lblSenha.setBounds(50, 167, 40, 19);
 		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		frmLogin.getContentPane().add(lblSenha);
 		
-		textField = new JTextField();
-		textField.setBounds(50, 133, 285, 20);
-		frmLogin.getContentPane().add(textField);
-		textField.setColumns(10);
+		tfEmail = new JTextField();
+		tfEmail.setBounds(50, 133, 285, 20);
+		frmLogin.getContentPane().add(tfEmail);
+		tfEmail.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(50, 185, 285, 20);
-		frmLogin.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		tfSenha = new JTextField();
+		tfSenha.setBounds(50, 186, 285, 20);
+		frmLogin.getContentPane().add(tfSenha);
+		tfSenha.setColumns(10);
+		
 		
 		JButton btnEntrar = new JButton("Entrar");
-		btnEntrar.setBounds(50, 255, 285, 23);
-		btnEntrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frmLogin.dispose();
-				LeilaoMainInterface.leilaoMain();
-			}
-		});
-		frmLogin.getContentPane().add(btnEntrar);
+		btnEntrar.setBounds(50, 256, 285, 23);
+		
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.setBounds(50, 284, 285, 23);
+		btnCadastrar.setBounds(50, 285, 285, 23);
+		
+		JLabel lblAviso = new JLabel("");
+		lblAviso.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAviso.setAlignmentX(Component.CENTER_ALIGNMENT);
+		lblAviso.setBounds(50, 220, 285, 22);
+		lblAviso.setForeground(Color.RED);
+		lblAviso.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		frmLogin.getContentPane().add(lblAviso);
+		frmLogin.getContentPane().add(btnEntrar);
+		frmLogin.getContentPane().add(btnCadastrar);
+		
+		btnEntrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Negocio.Usuario usuarioAutual = null;
+				boolean invalido = false;
+				try {
+					usuarioAutual = new Negocio.UsuarioFachada().buscarPorEmail(tfEmail.getText());
+					
+				} catch (Negocio.UsuarioException exc) {
+					lblAviso.setText("Email invalido");
+					invalido = true;
+				}
+				
+				if (usuarioAutual != null) {
+					frmLogin.dispose();
+					LeilaoMainInterface.leilaoMain();
+				} else {
+					if (!invalido) {
+						lblAviso.setText("Usuario nao econtrado");
+					}
+				}
+			}
+		});
+		
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmLogin.dispose();
 				Cadastro.cadastroMain();
 			}
 		});
-		frmLogin.getContentPane().add(btnCadastrar);
 	}
 }
