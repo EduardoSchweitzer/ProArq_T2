@@ -7,6 +7,6 @@ public interface LeilaoDAO {
     ArrayList<LeilaoDTO> buscarAtivos();
     ArrayList<LeilaoDTO> buscarFinalizados();
     LeilaoDTO buscarPorId(String id);
-    void inserir(LeilaoDTO leilao);
-    void alterar(LeilaoDTO leilao);
+    void inserir(LeilaoDTO leilao) throws LeilaoDAOIdDuplicadoException;
+    void alterar(LeilaoDTO leilao) throws LeilaoDAOIdInexistenteException;
 }
