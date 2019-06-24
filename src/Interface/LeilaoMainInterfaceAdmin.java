@@ -28,14 +28,6 @@ public class LeilaoMainInterfaceAdmin {
 	 * Create the application.
 	 */
 	public LeilaoMainInterfaceAdmin() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
 		frmPaginaInicial = new InterfaceAtivosAdminDecorator();
 	}
-
 }

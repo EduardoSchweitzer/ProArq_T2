@@ -4,18 +4,19 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-public class LeilaoAtualAdmin {
+public class LeilaoAtualProponente {
 
 	private JFrame frame;
-	
+
+
 	/**
 	 * Launch the application.
 	 */
-	public static void leilaoAtualMain(Negocio.Leilao leilao) {
+	public static void leilaoAtualMain(Negocio.Leilao leilao, Negocio.Usuario usuarioAtual) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LeilaoAtualAdmin window = new LeilaoAtualAdmin(leilao);
+					LeilaoAtualProponente window = new LeilaoAtualProponente(leilao, usuarioAtual);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -27,7 +28,7 @@ public class LeilaoAtualAdmin {
 	/**
 	 * Create the application.
 	 */
-	public LeilaoAtualAdmin(Negocio.Leilao leilao) {
-		frame = new LeilaoAtualAdminDecorator(leilao);
+	public LeilaoAtualProponente(Negocio.Leilao leilao, Negocio.Usuario usuarioAtual) {
+		frame = new LeilaoAtualProponenteDecorator(leilao, usuarioAtual);
 	}
 }

@@ -2,10 +2,6 @@ package Interface;
 
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-
-import Negocio.UsuarioFachada;
-
 public class InicializadorUI {
 	
 	public static void main(String[] args) {

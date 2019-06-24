@@ -16,14 +16,16 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 import Negocio.Leilao;
-import java.awt.Cursor;
+import Negocio.LeilaoFachada;
 
-public class InterfaceAtivosAdminDecorator extends JFrame{
+public class LeilaoMainInterfaceDecorator extends JFrame{
 	
 	private ArrayList<Leilao> leiloes;
+	private Negocio.Usuario usuarioAtual;
 	
-	public InterfaceAtivosAdminDecorator() {
+	public LeilaoMainInterfaceDecorator(Negocio.Usuario usuarioAtual) {
 		super();
+		this.usuarioAtual = usuarioAtual;
 		leiloes = new ArrayList<Leilao>();
 		inicializar();
 	}
@@ -33,46 +35,59 @@ public class InterfaceAtivosAdminDecorator extends JFrame{
 		this.setResizable(false);
 		this.setBounds(100, 100, 400, 500);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(null);
+		this.getContentPane().setLayout(null);
 		
-		JLabel lblUsurioAdmin = new JLabel("  Usu\u00E1rio: Admin");
-		lblUsurioAdmin.setBounds(0, 10, 347, 14);
-		getContentPane().add(lblUsurioAdmin);
+		JLabel lblUsurioName = new JLabel("  Usu\u00E1rio : " + usuarioAtual.getNome());
+		lblUsurioName.setBounds(0, 6, 347, 14);
+		this.getContentPane().add(lblUsurioName);
 		
 		JLabel lblNewLabel = new JLabel("Leil\u00F5es ativos");
-		lblNewLabel.setBounds(47, 43, 300, 24);
+		lblNewLabel.setBounds(47, 20, 300, 24);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBackground(Color.WHITE);
 		this.getContentPane().add(lblNewLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(47, 82, 300, 331);
+		scrollPane.setBounds(47, 69, 300, 331);
 		this.getContentPane().add(scrollPane);
 		
 				JList listaLeiloes = atualizarListaLeiloes();
-				listaLeiloes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				listaLeiloes.setFont(new Font("Tahoma", Font.PLAIN, 20));
 				listaLeiloes.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
 						Leilao leilao = leiloes.get(listaLeiloes.getSelectedIndex());
+						if (leilao.getCpfProponente().matches(usuarioAtual.getCpf())) {
+							LeilaoAtualProponente.leilaoAtualMain(leilao, usuarioAtual);
+						} else {
+							LeilaoAtual.leilaoAtualMain(leilao, usuarioAtual);
+						}
 						dispose();
-						LeilaoAtualAdmin.leilaoAtualMain(leilao);
 					}
 				});
 				scrollPane.setViewportView(listaLeiloes);
 				listaLeiloes.setBackground(Color.WHITE);
 		
-		JButton btnVerInativos = new JButton("Ver inativos");
-		btnVerInativos.setBounds(47, 419, 300, 23);
-		btnVerInativos.addActionListener(new ActionListener() {
+		JButton btnCriarLeilo = new JButton("Criar Leil\u00E3o");
+		btnCriarLeilo.setBounds(47, 435, 300, 23);
+		btnCriarLeilo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new Interface.InterfaceInativosAdminDecorator().setVisible(true);
+				CriarLeilao.criarMain(usuarioAtual);
 				dispose();
 			}
 		});
-		this.getContentPane().add(btnVerInativos);	
+		
+		JButton btnMeusLeiles = new JButton("Meus Leil\u00F5es");
+		btnMeusLeiles.setBounds(47, 406, 300, 23);
+		btnMeusLeiles.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MeusLeiloes.showMeusLeilos(usuarioAtual);
+				dispose();
+			}
+		});
+		getContentPane().add(btnMeusLeiles);
+		getContentPane().add(btnCriarLeilo);
 	}
 	
 	public JList atualizarListaLeiloes() {
