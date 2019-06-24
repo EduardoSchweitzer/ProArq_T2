@@ -18,12 +18,12 @@ public class Leilao {
 		this.nomeProduto = nomeProduto;
 		this.precoInicial = precoInicial;
 		this.cpfProponente = cpfProponente;
-		//TODO gerar id
+		this.id = String.valueOf(new Persistencia.LeilaoDAOJson().buscarTodos().size());
 		this.maiorLance = new Lance(precoInicial, this.cpfProponente);
 		this.historicoLances = new ArrayList<>();
 		this.historicoLances.add(maiorLance);
 		this.ativo = true;
-		ultimaModificacao = Calendar.getInstance().getTimeInMillis();
+		ultimaModificacao = 0;
 	}
 
 	public Leilao(String id, String nomeProduto, double precoInicial, Lance maiorLance, ArrayList<Lance> historicoLances, String cpfProponente, long ultimaModificacao, boolean ativo) {
@@ -89,6 +89,7 @@ public class Leilao {
 	public void addLance(double valor, String idUsuario) {
 		Lance novoLance = new Lance(valor, idUsuario);
 		historicoLances.add(novoLance);
+		maiorLance = novoLance;
 	}
 
 	//ID proponente

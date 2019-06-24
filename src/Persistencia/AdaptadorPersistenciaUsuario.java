@@ -12,10 +12,12 @@ public class AdaptadorPersistenciaUsuario {
 	}
 	
 	public Usuario converterDeDTO(UsuarioDTO u) {
+		if (u == null) return null;
 		return new Usuario(u.getCpf(), u.getNome(), u.getEmail(), u.getSenha(), u.isAdmin());	
 	}
 	
 	public UsuarioDTO converterParaDTO(Usuario u) {
+		if (u == null) return null;
 		UsuarioDTO uDTO = new UsuarioDTO();
 		uDTO.setCpf(u.getCpf());
 		uDTO.setNome(u.getNome());

@@ -9,7 +9,7 @@ public class ValidadorUsuario {
 	}
 	
 	public boolean validaEmail(String email) {
-		return email.matches("^(.+)@(.+)$");
+		return email.contains("@");
 	}
 	
 	public boolean validaSenha(String senha) {

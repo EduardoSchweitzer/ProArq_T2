@@ -46,6 +46,32 @@ public class LeilaoFachada {
     public ArrayList<Leilao> buscarFinalizados() {
         return adpLei.buscarFinalizados();
     }
+    
+    public ArrayList<Leilao> buscarAtivosPorCpf(String cpf) {
+        ArrayList<Leilao> out = new ArrayList<Leilao>();
+        ArrayList<Leilao> ativos = buscarAtivos();
+        if (ativos.size() > 0) {
+        	for (Leilao leilao : ativos) {
+        		if (leilao.getCpfProponente().matches(cpf)) {
+        			out.add(leilao);
+        		}
+        	}
+        }
+    	return out;
+    }
+
+    public ArrayList<Leilao> buscarFinalizadosPorCpf(String cpf) {
+    	ArrayList<Leilao> out = new ArrayList<Leilao>();
+        ArrayList<Leilao> ativos = buscarFinalizados();
+        if (ativos.size() > 0) {
+        	for (Leilao leilao : ativos) {
+        		if (leilao.getCpfProponente().matches(cpf)) {
+        			out.add(leilao);
+        		}
+        	}
+        }
+    	return out;
+    }
 
     public void alterar(Leilao leilao) throws LeilaoDAOIdInexistenteException {
         adpLei.alterar(leilao);
@@ -58,6 +84,10 @@ public class LeilaoFachada {
         Leilao leilao = buscarPorId(idLeilao);
         if (leilao == null) {
             throw new LeilaoException("Leilao nao encontrado");
+        }
+        
+        if (leilao.getHistoricoLances().get(leilao.getHistoricoLances().size()-1).getValor() >= valor) {
+        	throw new LeilaoException("Valor invalido");
         }
         leilao.addLance(valor, cpfUsuario);
         alterar(leilao);
